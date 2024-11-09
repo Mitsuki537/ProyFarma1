@@ -1,0 +1,94 @@
+﻿using FarmaControlAPI.Models;
+using FarmaControlAPI.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
+using System.Linq.Expressions;
+
+namespace FarmaControlAPI.Repository
+{
+    public class Repository<T> : IRepository<T> where T : class
+    {
+        private readonly FarmaControlDbContext _context;
+        readonly DbSet<T> _dbSet;
+
+        public Repository(FarmaControlDbContext context, DbSet<T> dbSet)
+        {
+            _context = context;
+            _dbSet = dbSet;
+        }
+
+        public async Task<IDbContextTransaction> BeginTransactionAsync()
+        {
+            return await _context.Database.BeginTransactionAsync();
+        }
+
+        public async Task CreateAsync(T entity)
+        {
+            await _dbSet.AddAsync(entity);
+            await SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(T entity)
+        {
+            await _dbSet.AddAsync(entity);
+            await SaveChangesAsync();
+        }
+
+        public async Task DeleteRangeAsync(List<T> entities)
+        {
+            _dbSet.RemoveRange(entities);
+            await SaveChangesAsync();
+        }
+
+        public async Task<bool> ExistsAsync(Expression<Func<T, bool>>? filter = null)
+        {
+            IQueryable<T> query = _dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            return await query.AnyAsync();
+        }
+
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null)
+        {
+            IQueryable<T> query = _dbSet;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            return await query.ToListAsync();
+        }
+
+        public async Task<T> GetAsync(Expression<Func<T, bool>>? filter = null, bool tracked = true)
+        {
+            IQueryable<T> query = _dbSet;
+
+            if (!tracked)
+            {
+                query = query.AsNoTracking();
+            }
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<T> GetById(int id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
+    }
+}

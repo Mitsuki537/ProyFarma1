@@ -82,6 +82,7 @@
             // 
             // btnUsuario
             // 
+            btnUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnUsuario.Cursor = Cursors.Hand;
             btnUsuario.FlatAppearance.BorderSize = 0;
             btnUsuario.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
@@ -91,7 +92,7 @@
             btnUsuario.ForeColor = Color.White;
             btnUsuario.Image = (Image)resources.GetObject("btnUsuario.Image");
             btnUsuario.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUsuario.Location = new Point(985, 0);
+            btnUsuario.Location = new Point(1004, 1);
             btnUsuario.Margin = new Padding(3, 2, 3, 2);
             btnUsuario.Name = "btnUsuario";
             btnUsuario.Size = new Size(130, 35);
