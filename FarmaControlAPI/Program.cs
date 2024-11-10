@@ -9,6 +9,7 @@ builder.Services.AddControllers();
 // Otros servicios
 builder.Services.AddSingleton<DatabaseContext>();
 builder.Services.AddScoped<IUsuarioRepository<Usuario>, UserRepository>();
+builder.Services.AddScoped<IEmpleadoRepository<Empleado>, EmlpeadoRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
