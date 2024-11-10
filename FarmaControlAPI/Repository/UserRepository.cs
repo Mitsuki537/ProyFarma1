@@ -32,14 +32,18 @@ namespace FarmaControlAPI.Repository
         }
 
         public async Task<bool> DeleteAsync(int id)
-        {
+        {            
             using var connection = _dbContext.GetConnection();
             await connection.OpenAsync();
-            var command = new SqlCommand("DELETE FROM [Employees].[Users] WHERE Id_User = @Id_User", connection);
 
-            command.Parameters.AddWithValue("@Id_User", id);
+            var deleteUsersCommand = new SqlCommand("DELETE FROM [Employees].[Users] WHERE Id_Employee = @Id_Employee", connection);
+            deleteUsersCommand.Parameters.AddWithValue("@Id_Employee", id);
+            await deleteUsersCommand.ExecuteNonQueryAsync();
 
-            return await command.ExecuteNonQueryAsync() > 0;
+            var deleteEmployeeCommand = new SqlCommand("DELETE FROM [Employees].[Employees] WHERE Id_Employee = @Id_Employee", connection);
+            deleteEmployeeCommand.Parameters.AddWithValue("@Id_Employee", id);
+
+            return await deleteEmployeeCommand.ExecuteNonQueryAsync() > 0;
         }
 
         public async Task<IEnumerable<Usuario>> GetAllAsync()

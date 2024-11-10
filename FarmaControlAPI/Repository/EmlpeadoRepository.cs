@@ -43,10 +43,20 @@ namespace FarmaControlAPI.Repository
             using var connection = _dbContext.GetConnection();
             await connection.OpenAsync();
 
-            var command = new SqlCommand("DELETE FROM [Employees].[Employees] WHERE Id_Employee = @Id_Employee", connection);
-            command.Parameters.AddWithValue("@Id_Employee", id);
+            var updateReportsToCommand = new SqlCommand(
+                "UPDATE [Employees].[Employees] SET ReportsTo = NULL WHERE ReportsTo = @Id_Employee",
+                connection
+            );
+            updateReportsToCommand.Parameters.AddWithValue("@Id_Employee", id);
+            await updateReportsToCommand.ExecuteNonQueryAsync();
 
-            return await command.ExecuteNonQueryAsync() > 0;
+            var deleteEmployeeCommand = new SqlCommand(
+                "DELETE FROM [Employees].[Employees] WHERE Id_Employee = @Id_Employee",
+                connection
+            );
+            deleteEmployeeCommand.Parameters.AddWithValue("@Id_Employee", id);
+
+            return await deleteEmployeeCommand.ExecuteNonQueryAsync() > 0;
         }
 
         public async Task<IEnumerable<Empleado>> GetAllAsync()

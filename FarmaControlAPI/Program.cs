@@ -10,7 +10,8 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<DatabaseContext>();
 builder.Services.AddScoped<IUsuarioRepository<Usuario>, UserRepository>();
 builder.Services.AddScoped<IEmpleadoRepository<Empleado>, EmlpeadoRepository>();
-
+builder.Services.AddScoped<IProveedorRepository<Proveedor>, ProveedorRepository>();
+builder.Services.AddScoped<IOrdenCompraRepository<OrdenCompra>, OrdenCompraRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
