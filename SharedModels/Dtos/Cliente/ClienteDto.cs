@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedModels.Cliente
+namespace SharedModels.Dtos.Cliente
 {
-    public class ClienteUpdateDto
+    public class ClienteDto
     {
         public int IdCustomer { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Phone { get; set; }
+        public DateTime RegistrationDate { get; set; }
     }
 }

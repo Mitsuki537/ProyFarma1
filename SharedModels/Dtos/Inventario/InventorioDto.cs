@@ -4,16 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedModels
+namespace SharedModels.Dtos.Inventario
 {
-    public class Movimiento
+    public class InventorioDto
     {
-        public int IdMovement { get; set; }
         public int IdInventory { get; set; }
-        public string MovementType { get; set; }
+        public int IdProduct { get; set; }
         public int Quantity { get; set; }
-        public DateTime MovementDate { get; set; }
-        public int? ReferenceID { get; set; }
+        public DateTime DateReceived { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
 }

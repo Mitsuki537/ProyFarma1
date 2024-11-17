@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedModels
+namespace SharedModels.Dtos.MovimientoInventario
 {
-    public class Movimiento
+    public class MovimientoInventarioDto
     {
         public int IdMovement { get; set; }
         public int IdInventory { get; set; }

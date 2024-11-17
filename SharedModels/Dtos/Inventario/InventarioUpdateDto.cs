@@ -8,6 +8,7 @@ namespace SharedModels.Dtos.Inventario
 {
     public class InventarioUpdateDto
     {
+        public int IdInventory { get; set; }
         public int IdProduct { get; set; }
         public int Quantity { get; set; }
         public DateTime DateReceived { get; set; }

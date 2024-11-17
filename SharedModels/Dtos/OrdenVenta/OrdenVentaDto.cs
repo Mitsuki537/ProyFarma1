@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace SharedModels.Dtos.OrdenVenta
 {
-    public class OrdenVentaUpdateDto
+    public class OrdenVentaDto
     {
-        public int IdSalesOrder {  get; set; }
+        public int IdSalesOrder { get; set; }
         public int IdCustomer { get; set; }
         public int IdEmployee { get; set; }
         public DateTime OrderDate { get; set; }
+        public DateTime ModifiedDate { get; set; }
     }
 }

@@ -15,6 +15,6 @@ namespace SharedModels
         public decimal UnitPrice { get; set; }
         public decimal LineTotal { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public DateTime ReturnDeadline { get; set; }
+        public DateTime? ReturnDeadline { get; set; }
     }
 }

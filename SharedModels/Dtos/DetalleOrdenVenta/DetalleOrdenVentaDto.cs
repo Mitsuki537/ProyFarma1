@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SharedModels.Dtos.DetalleOrdenVenta
 {
-    public class DetalleOrdenVentaUpdateDto
+    public class DetalleOrdenVentaDto
     {
         public int IdSalesOrderDetail { get; set; }
         public int IdSalesOrder { get; set; }
@@ -14,5 +14,7 @@ namespace SharedModels.Dtos.DetalleOrdenVenta
         public int Quantity { get; set; }
         public decimal UnitPrice { get; set; }
         public decimal? Discount { get; set; }
+        public decimal LineTotal { get; set; }
+        public DateTime ModifiedDate { get; set; }
     }
 }

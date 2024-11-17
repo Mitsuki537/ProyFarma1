@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SharedModels.Dtos.CategoriaProducto
 {
-    public class CategoriaProductoUpdateDto
+    public class CategoriaProductoCreateDto
     {
-        public int IdCategory { get; set; }
         public int? IdParentCategory { get; set; }
         public string CategoryName { get; set; }
     }
