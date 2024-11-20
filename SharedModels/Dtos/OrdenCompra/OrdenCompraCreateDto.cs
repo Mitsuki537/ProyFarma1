@@ -15,5 +15,6 @@ namespace SharedModels.Dtos.OrdenCompra
         public DateTime OrderDate { get; set; }
         [Required, StringLength(50)]
         public string Status { get; set; }
+        public string? OrderNumber { get; set; }
     }
 }

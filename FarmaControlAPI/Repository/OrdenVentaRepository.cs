@@ -19,12 +19,13 @@ namespace FarmaControlAPI.Repository
             await connection.OpenAsync();
 
             var command = new SqlCommand(
-                "INSERT INTO [Sales].[SalesOrders] (Id_Customer, Id_Employee, OrderDate, ModifiedDate) " +
-                "VALUES (@Id_Customer, @Id_Employee, @OrderDate, GETDATE()); " +
+                "INSERT INTO [Sales].[SalesOrders] (Id_Customer, Id_Employee,  OrderDate, ModifiedDate, OrderNumber) " +
+                "VALUES (@Id_Customer, @Id_Employee , @OrderDate, GETDATE(), @OrderNumber); " +
                 "SELECT SCOPE_IDENTITY();", connection);
 
             command.Parameters.AddWithValue("@Id_Customer", entity.IdCustomer);
             command.Parameters.AddWithValue("@Id_Employee", entity.IdEmployee);
+            command.Parameters.AddWithValue("@OrderNumber", entity.OrderNumber);
             command.Parameters.AddWithValue("@OrderDate", entity.OrderDate);
 
             return Convert.ToInt32(await command.ExecuteScalarAsync());
@@ -56,9 +57,11 @@ namespace FarmaControlAPI.Repository
                 {
                     IdSalesOrder = reader.GetInt32(0),
                     IdCustomer = reader.GetInt32(1),
-                    IdEmployee = reader.GetInt32(2),
+                    IdEmployee = reader.GetInt32(2),    
                     OrderDate = reader.GetDateTime(3),
-                    ModifiedDate = reader.GetDateTime(4)
+                    ModifiedDate = reader.GetDateTime(4),
+                    OrderNumber = reader.IsDBNull(5) ? null : reader.GetString(5),
+
                 });
             }
 
@@ -82,7 +85,8 @@ namespace FarmaControlAPI.Repository
                     IdCustomer = reader.GetInt32(1),
                     IdEmployee = reader.GetInt32(2),
                     OrderDate = reader.GetDateTime(3),
-                    ModifiedDate = reader.GetDateTime(4)
+                    ModifiedDate = reader.GetDateTime(4),
+                    OrderNumber = reader.IsDBNull(5) ? null : reader.GetString(5)  
                 };
             }
 
@@ -96,11 +100,12 @@ namespace FarmaControlAPI.Repository
 
             var command = new SqlCommand(
                 "UPDATE [Sales].[SalesOrders] SET Id_Customer = @Id_Customer, Id_Employee = @Id_Employee, " +
-                "OrderDate = @OrderDate, ModifiedDate = GETDATE() WHERE Id_SalesOrder = @Id_SalesOrder", connection);
+                "OrderDate = @OrderDate, ModifiedDate = GETDATE(), OrderNumber = @OrderNumber WHERE Id_SalesOrder = @Id_SalesOrder", connection);
 
             command.Parameters.AddWithValue("@Id_SalesOrder", entity.IdSalesOrder);
             command.Parameters.AddWithValue("@Id_Customer", entity.IdCustomer);
             command.Parameters.AddWithValue("@Id_Employee", entity.IdEmployee);
+            command.Parameters.AddWithValue("@OrderNumber", entity.OrderNumber ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@OrderDate", entity.OrderDate);
 
             return await command.ExecuteNonQueryAsync() > 0;

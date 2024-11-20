@@ -10,20 +10,20 @@ using System.Windows.Forms;
 
 namespace FarmaApp
 {
-    public partial class ClientesClasificacionForm : Form
+    public partial class ComprasContenedor : Form
     {
-        public ClientesClasificacionForm()
+        public ComprasContenedor()
         {
             InitializeComponent();
         }
 
-        private void btnClientes_Click(object sender, EventArgs e)
+        private void btnOrdenCompra_Click(object sender, EventArgs e)
         {
-            ClientesForm frm = new ClientesForm();
+            DetalleOrdenVentaForm frm = new DetalleOrdenVentaForm();
             AbrirFormEnPanel(frm);
         }
 
-        private void AbrirFormEnPanel(ClientesForm frm)
+        private void AbrirFormEnPanel(DetalleOrdenVentaForm frm)
         {
             if (pnlContenedorForm.Controls.Count > 0)
                 pnlContenedorForm.Controls.RemoveAt(0);
@@ -35,13 +35,13 @@ namespace FarmaApp
             frm.Show();
         }
 
-        private void btnCategorias_Click(object sender, EventArgs e)
+        private void btnDetalleOrdenCompra_Click(object sender, EventArgs e)
         {
-            CategoriaClntForm frm = new CategoriaClntForm();
+            DetalleCompraForm frm = new DetalleCompraForm();
             AbrirFormEnPanel(frm);
         }
 
-        private void AbrirFormEnPanel(CategoriaClntForm frm)
+        private void AbrirFormEnPanel(DetalleCompraForm frm)
         {
             if (pnlContenedorForm.Controls.Count > 0)
                 pnlContenedorForm.Controls.RemoveAt(0);

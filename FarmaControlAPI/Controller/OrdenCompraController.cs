@@ -79,7 +79,8 @@ namespace FarmaControlAPI.Controller
                     IdSupplier = orderDto.IdSupplier,
                     OrderDate = orderDto.OrderDate,
                     Status = orderDto.Status,
-                    ModifiedDate = DateTime.Now
+                    ModifiedDate = DateTime.Now,
+                    OrderNumber = orderDto.OrderNumber
                 };
 
                 var createdOrderId = await _repository.CreateAsync(order);
@@ -124,6 +125,7 @@ namespace FarmaControlAPI.Controller
                 existingOrder.OrderDate = orderDto.OrderDate;
                 existingOrder.Status = orderDto.Status;
                 existingOrder.ModifiedDate = DateTime.Now;
+                existingOrder.OrderNumber = orderDto.OrderNumber;
 
                 var updated = await _repository.UpdateAsync(existingOrder);
                 if (updated)

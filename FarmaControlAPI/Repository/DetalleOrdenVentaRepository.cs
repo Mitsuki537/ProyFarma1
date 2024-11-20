@@ -20,7 +20,7 @@ namespace FarmaControlAPI.Repository
 
             var command = new SqlCommand("INSERT INTO [Sales].[SalesOrderDetails] " +
                                          "(Id_SalesOrder, Id_Product, Quantity, UnitPrice, Discount, ModifiedDate) " +
-                                         "VALUES (@IdSalesOrder, @IdProduct, @Quantity, @UnitPrice, @Discount, GETDATE()); " +
+                                         "VALUES (@IdSalesOrder, @IdProduct, @Quantity, @UnitPrice, @Discount, GETDATE(), @OrderNumber); " +
                                          "SELECT SCOPE_IDENTITY();", connection);
 
             command.Parameters.AddWithValue("@IdSalesOrder", entity.IdSalesOrder);
@@ -29,7 +29,7 @@ namespace FarmaControlAPI.Repository
             command.Parameters.AddWithValue("@UnitPrice", entity.UnitPrice);
             command.Parameters.AddWithValue("@Discount", entity.Discount ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
-
+            command.Parameters.AddWithValue("@OrderNumber", entity.OrderNumber ?? (object)DBNull.Value);
             return Convert.ToInt32(await command.ExecuteScalarAsync());
         }
 
@@ -64,7 +64,8 @@ namespace FarmaControlAPI.Repository
                     UnitPrice = reader.GetDecimal(4),
                     Discount = reader.IsDBNull(5) ? 0 : reader.GetDecimal(5),
                     LineTotal = reader.GetDecimal(6),
-                    ModifiedDate = reader.GetDateTime(7)
+                    ModifiedDate = reader.GetDateTime(7),
+                    OrderNumber = reader.IsDBNull(8) ? null : reader.GetString(8),
                 });
             }
             return salesOrderDetails;
@@ -90,7 +91,8 @@ namespace FarmaControlAPI.Repository
                     UnitPrice = reader.GetDecimal(4),
                     Discount = reader.IsDBNull(5) ? 0 : reader.GetDecimal(5),
                     LineTotal = reader.GetDecimal(6),
-                    ModifiedDate = reader.GetDateTime(7)
+                    ModifiedDate = reader.GetDateTime(7),
+                    OrderNumber = reader.IsDBNull(8) ? null : reader.GetString(8),
                 };
             }
             return null;
@@ -103,7 +105,7 @@ namespace FarmaControlAPI.Repository
 
             var command = new SqlCommand("UPDATE [Sales].[SalesOrderDetails] SET " +
                                          "Id_SalesOrder = @IdSalesOrder, Id_Product = @IdProduct, Quantity = @Quantity, " +
-                                         "UnitPrice = @UnitPrice, Discount = @Discount, ModifiedDate = GETDATE() " +
+                                         "UnitPrice = @UnitPrice, Discount = @Discount, ModifiedDate = GETDATE(), OrderNumber=@OrderNumber " +
                                          "WHERE Id_SalesOrderDetail = @IdSalesOrderDetail", connection);
 
             command.Parameters.AddWithValue("@IdSalesOrderDetail", entity.IdSalesOrderDetail);
@@ -113,7 +115,7 @@ namespace FarmaControlAPI.Repository
             command.Parameters.AddWithValue("@UnitPrice", entity.UnitPrice);
             command.Parameters.AddWithValue("@Discount", entity.Discount ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
-
+            command.Parameters.AddWithValue("@OrderNumber", entity.OrderNumber ?? (object)DBNull.Value);
             return await command.ExecuteNonQueryAsync() > 0;
         }
     }

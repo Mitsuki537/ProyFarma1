@@ -13,35 +13,6 @@ namespace FarmaControlAPI.Repository
             _dbContext = dbContext;
         }
 
-        public async Task<int> CreateAsync(Inventario entity)
-        {
-            using var connection = _dbContext.GetConnection();
-            await connection.OpenAsync();
-
-            var command = new SqlCommand("INSERT INTO [Inventory].[Inventories] " +
-                                         "(Id_Product, Quantity, DateReceived, ModifiedDate) " +
-                                         "VALUES (@Id_Product, @Quantity, @DateReceived, @ModifiedDate); " +
-                                         "SELECT SCOPE_IDENTITY();", connection);
-
-            command.Parameters.AddWithValue("@Id_Product", entity.IdProduct);
-            command.Parameters.AddWithValue("@Quantity", entity.Quantity);
-            command.Parameters.AddWithValue("@DateReceived", entity.DateReceived);
-            command.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
-
-            return Convert.ToInt32(await command.ExecuteScalarAsync());
-        }
-
-        public async Task<bool> DeleteAsync(int id)
-        {
-            using var connection = _dbContext.GetConnection();
-            await connection.OpenAsync();
-
-            var command = new SqlCommand("DELETE FROM [Inventory].[Inventories] WHERE Id_Inventory = @Id_Inventory", connection);
-            command.Parameters.AddWithValue("@Id_Inventory", id);
-
-            return await command.ExecuteNonQueryAsync() > 0;
-        }
-
         public async Task<IEnumerable<Inventario>> GetAllAsync()
         {
             using var connection = _dbContext.GetConnection();
@@ -86,24 +57,6 @@ namespace FarmaControlAPI.Repository
                 };
             }
             return null;
-        }
-
-        public async Task<bool> UpdateAsync(Inventario entity)
-        {
-            using var connection = _dbContext.GetConnection();
-            await connection.OpenAsync();
-
-            var command = new SqlCommand("UPDATE [Inventory].[Inventories] SET " +
-                                         "Id_Product = @Id_Product, Quantity = @Quantity, DateReceived = @DateReceived, " +
-                                         "ModifiedDate = @ModifiedDate WHERE Id_Inventory = @Id_Inventory", connection);
-
-            command.Parameters.AddWithValue("@Id_Inventory", entity.IdInventory);
-            command.Parameters.AddWithValue("@Id_Product", entity.IdProduct);
-            command.Parameters.AddWithValue("@Quantity", entity.Quantity);
-            command.Parameters.AddWithValue("@DateReceived", entity.DateReceived);
-            command.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
-
-            return await command.ExecuteNonQueryAsync() > 0;
         }
     }
 }

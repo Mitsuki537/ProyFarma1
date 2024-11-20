@@ -38,7 +38,6 @@ namespace FarmaControlAPI.Controller
                     ReorderLevel = product.ReorderLevel,
                     LoteNumber = product.LoteNumber,
                     ManufactureDate = product.ManufactureDate,
-                    ExpirationDate = product.ExpirationDate,
                     ModifiedDate = product.ModifiedDate
                 });
 
@@ -77,7 +76,6 @@ namespace FarmaControlAPI.Controller
                     ReorderLevel = product.ReorderLevel,
                     LoteNumber = product.LoteNumber,
                     ManufactureDate = product.ManufactureDate,
-                    ExpirationDate = product.ExpirationDate,
                     ModifiedDate = product.ModifiedDate
                 };
 
@@ -112,7 +110,6 @@ namespace FarmaControlAPI.Controller
                     ReorderLevel = productDto.ReorderLevel,
                     LoteNumber = productDto.LoteNumber,
                     ManufactureDate = productDto.ManufactureDate,
-                    ExpirationDate = productDto.ExpirationDate,
                     ModifiedDate = DateTime.Now
                 };
 
@@ -161,7 +158,6 @@ namespace FarmaControlAPI.Controller
                 existingProduct.ReorderLevel = productDto.ReorderLevel;
                 existingProduct.LoteNumber = productDto.LoteNumber;
                 existingProduct.ManufactureDate = productDto.ManufactureDate;
-                existingProduct.ExpirationDate = productDto.ExpirationDate;
                 existingProduct.ModifiedDate = DateTime.Now;
 
                 var updated = await _repository.UpdateAsync(existingProduct);

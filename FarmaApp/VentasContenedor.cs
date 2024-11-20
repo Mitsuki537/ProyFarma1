@@ -19,11 +19,11 @@ namespace FarmaApp
 
         private void btnOrdenVenta_Click(object sender, EventArgs e)
         {
-            OrdenVentaForm frm = new OrdenVentaForm();
+            DetalleOrdenVentaForm frm = new DetalleOrdenVentaForm();
             AbrirFormEnPanel(frm);
         }
 
-        private void AbrirFormEnPanel(OrdenVentaForm frm)
+        private void AbrirFormEnPanel(DetalleOrdenVentaForm frm)
         {
             if (pnlContenedorForm.Controls.Count > 0)
                 pnlContenedorForm.Controls.RemoveAt(0);
@@ -37,11 +37,11 @@ namespace FarmaApp
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            VentasForm frm = new VentasForm();
+            OrdenVentaForm frm = new OrdenVentaForm();
             AbrirFormEnPanel(frm);
         }
 
-        private void AbrirFormEnPanel(VentasForm frm)
+        private void AbrirFormEnPanel(OrdenVentaForm frm)
         {
             if (pnlContenedorForm.Controls.Count > 0)
                 pnlContenedorForm.Controls.RemoveAt(0);

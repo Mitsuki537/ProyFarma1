@@ -37,7 +37,8 @@ namespace FarmaControlAPI.Controller
                     UnitPrice = detail.UnitPrice,
                     Discount = detail.Discount,
                     LineTotal = detail.LineTotal,
-                    ModifiedDate = detail.ModifiedDate
+                    ModifiedDate = detail.ModifiedDate,
+                    OrderNumber = detail.OrderNumber
                 });
 
                 return Ok(orderDetailDtos);
@@ -74,7 +75,8 @@ namespace FarmaControlAPI.Controller
                     UnitPrice = orderDetail.UnitPrice,
                     Discount = orderDetail.Discount,
                     LineTotal = orderDetail.LineTotal,
-                    ModifiedDate = orderDetail.ModifiedDate
+                    ModifiedDate = orderDetail.ModifiedDate,
+                    OrderNumber = orderDetail.OrderNumber
                 };
 
                 return Ok(orderDetailDto);
@@ -105,7 +107,8 @@ namespace FarmaControlAPI.Controller
                     IdProduct = orderDetailDto.IdProduct,
                     Quantity = orderDetailDto.Quantity,
                     UnitPrice = orderDetailDto.UnitPrice,
-                    Discount = orderDetailDto.Discount
+                    Discount = orderDetailDto.Discount,
+                    OrderNumber= orderDetailDto.OrderNumber
                 };
 
                 var createdOrderDetailId = await _repository.CreateAsync(orderDetail);
@@ -151,6 +154,7 @@ namespace FarmaControlAPI.Controller
                 existingOrderDetail.Quantity = orderDetailDto.Quantity;
                 existingOrderDetail.UnitPrice = orderDetailDto.UnitPrice;
                 existingOrderDetail.Discount = orderDetailDto.Discount;
+                existingOrderDetail.OrderNumber = orderDetailDto.OrderNumber;
 
                 var updated = await _repository.UpdateAsync(existingOrderDetail);
                 if (updated)

@@ -22,9 +22,9 @@ namespace FarmaControlAPI.Repository
 
             var command = new SqlCommand("INSERT INTO [Products].[Products] " +
                                          "(ProductName, Id_Supplier, Id_Category, UnitPrice, ReorderLevel, LoteNumber, " +
-                                         "ManufactureDate, ExpirationDate, ModifiedDate) " +
+                                         "ManufactureDate,  ModifiedDate) " +
                                          "VALUES (@ProductName, @Id_Supplier, @Id_Category, @UnitPrice, @ReorderLevel, " +
-                                         "@LoteNumber, @ManufactureDate, @ExpirationDate, GETDATE()); " +
+                                         "@LoteNumber, @ManufactureDate,  GETDATE()); " +
                                          "SELECT SCOPE_IDENTITY();", connection);
 
             command.Parameters.AddWithValue("@ProductName", entity.ProductName);
@@ -34,7 +34,6 @@ namespace FarmaControlAPI.Repository
             command.Parameters.AddWithValue("@ReorderLevel", entity.ReorderLevel ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@LoteNumber", entity.LoteNumber);
             command.Parameters.AddWithValue("@ManufactureDate", entity.ManufactureDate);
-            command.Parameters.AddWithValue("@ExpirationDate", entity.ExpirationDate ?? (object)DBNull.Value);
 
             return Convert.ToInt32(await command.ExecuteScalarAsync());
         }
@@ -71,8 +70,7 @@ namespace FarmaControlAPI.Repository
                     ReorderLevel = reader.IsDBNull(5) ? null : reader.GetInt32(5),
                     LoteNumber = reader.GetString(6),
                     ManufactureDate = reader.GetDateTime(7),
-                    ExpirationDate = reader.IsDBNull(8) ? null : reader.GetDateTime(8),
-                    ModifiedDate = reader.GetDateTime(9)
+                    ModifiedDate = reader.GetDateTime(8)
                 });
             }
             return productos;
@@ -99,8 +97,7 @@ namespace FarmaControlAPI.Repository
                     ReorderLevel = reader.IsDBNull(5) ? null : reader.GetInt32(5),
                     LoteNumber = reader.GetString(6),
                     ManufactureDate = reader.GetDateTime(7),
-                    ExpirationDate = reader.IsDBNull(8) ? null : reader.GetDateTime(8),
-                    ModifiedDate = reader.GetDateTime(9)
+                    ModifiedDate = reader.GetDateTime(8)
                 };
             }
             return null;
@@ -114,7 +111,7 @@ namespace FarmaControlAPI.Repository
             var command = new SqlCommand("UPDATE [Products].[Products] SET " +
                                          "ProductName = @ProductName, Id_Supplier = @Id_Supplier, Id_Category = @Id_Category, " +
                                          "UnitPrice = @UnitPrice, ReorderLevel = @ReorderLevel, LoteNumber = @LoteNumber, " +
-                                         "ManufactureDate = @ManufactureDate, ExpirationDate = @ExpirationDate, ModifiedDate = GETDATE() " +
+                                         "ManufactureDate = @ManufactureDate, ModifiedDate = GETDATE() " +
                                          "WHERE Id_Product = @Id_Product", connection);
 
             command.Parameters.AddWithValue("@Id_Product", entity.IdProduct);
@@ -125,7 +122,6 @@ namespace FarmaControlAPI.Repository
             command.Parameters.AddWithValue("@ReorderLevel", entity.ReorderLevel ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@LoteNumber", entity.LoteNumber);
             command.Parameters.AddWithValue("@ManufactureDate", entity.ManufactureDate);
-            command.Parameters.AddWithValue("@ExpirationDate", entity.ExpirationDate ?? (object)DBNull.Value);
 
             return await command.ExecuteNonQueryAsync() > 0;
         }

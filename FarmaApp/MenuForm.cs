@@ -124,11 +124,11 @@ namespace FarmaApp
 
         private void btnRegistroUsuarioForm_Click(object sender, EventArgs e)
         {
-            ProveedoresContenedorForm frm = new ProveedoresContenedorForm();
+            ProveedoresForm frm = new ProveedoresForm();
             AbrirFormEnPanel(frm);
         }
 
-        private void AbrirFormEnPanel(ProveedoresContenedorForm frm)
+        private void AbrirFormEnPanel(ProveedoresForm frm)
         {
             if (pnlContenedorForm.Controls.Count > 0)
                 pnlContenedorForm.Controls.RemoveAt(0);
@@ -196,11 +196,29 @@ namespace FarmaApp
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            ClientesClasificacionForm frm = new ClientesClasificacionForm();
+            ClientesForm frm = new ClientesForm();
             AbrirFormEnPanel(frm);
         }
 
-        private void AbrirFormEnPanel(ClientesClasificacionForm frm)
+        private void AbrirFormEnPanel(ClientesForm frm)
+        {
+            if (pnlContenedorForm.Controls.Count > 0)
+                pnlContenedorForm.Controls.RemoveAt(0);
+            frm.TopLevel = false;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            pnlContenedorForm.Controls.Add(frm);
+            pnlContenedorForm.Tag = frm;
+            frm.Show();
+        }
+
+        private void btnCompras_Click(object sender, EventArgs e)
+        {
+            ComprasContenedor frm = new ComprasContenedor();
+            AbrirFormEnPanel(frm);
+        }
+
+        private void AbrirFormEnPanel(ComprasContenedor frm)
         {
             if (pnlContenedorForm.Controls.Count > 0)
                 pnlContenedorForm.Controls.RemoveAt(0);

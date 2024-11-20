@@ -32,6 +32,7 @@ namespace FarmaControlAPI.Controller
                     IdSalesOrder = order.IdSalesOrder,
                     IdCustomer = order.IdCustomer,
                     IdEmployee = order.IdEmployee,
+                    OrderNumber = order.OrderNumber,
                     OrderDate = order.OrderDate,
                     ModifiedDate = order.ModifiedDate
                 });
@@ -66,6 +67,7 @@ namespace FarmaControlAPI.Controller
                     IdSalesOrder = salesOrder.IdSalesOrder,
                     IdCustomer = salesOrder.IdCustomer,
                     IdEmployee = salesOrder.IdEmployee,
+                    OrderNumber =salesOrder.OrderNumber,
                     OrderDate = salesOrder.OrderDate,
                     ModifiedDate = salesOrder.ModifiedDate
                 };
@@ -98,6 +100,7 @@ namespace FarmaControlAPI.Controller
                 {
                     IdCustomer = salesOrderDto.IdCustomer,
                     IdEmployee = salesOrderDto.IdEmployee,
+                    OrderNumber = salesOrderDto.OrderNumber,
                     OrderDate = salesOrderDto.OrderDate,
                     ModifiedDate = DateTime.Now
                 };
@@ -139,6 +142,7 @@ namespace FarmaControlAPI.Controller
 
                 existingSalesOrder.IdCustomer = salesOrderDto.IdCustomer;
                 existingSalesOrder.IdEmployee = salesOrderDto.IdEmployee;
+                existingSalesOrder.OrderNumber = salesOrderDto.OrderNumber;
                 existingSalesOrder.OrderDate = salesOrderDto.OrderDate;
                 existingSalesOrder.ModifiedDate = DateTime.Now;
 

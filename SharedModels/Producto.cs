@@ -16,7 +16,6 @@ namespace SharedModels
         public int? ReorderLevel { get; set; }
         public string LoteNumber { get; set; }
         public DateTime ManufactureDate { get; set; }
-        public DateTime? ExpirationDate { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
 }

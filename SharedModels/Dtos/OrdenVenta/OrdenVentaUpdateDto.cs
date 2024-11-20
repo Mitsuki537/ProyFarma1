@@ -11,6 +11,7 @@ namespace SharedModels.Dtos.OrdenVenta
         public int IdSalesOrder {  get; set; }
         public int IdCustomer { get; set; }
         public int IdEmployee { get; set; }
+        public string? OrderNumber { get; set; }
         public DateTime OrderDate { get; set; }
     }
 }

@@ -39,6 +39,7 @@
             btnReportes = new Button();
             btnRegistroUsuarioForm = new Button();
             pnlDashboard = new Panel();
+            btnCompras = new Button();
             btnMenu = new Button();
             btnProductos = new Button();
             btnEmpleados = new Button();
@@ -197,7 +198,7 @@
             btnRegistroUsuarioForm.Font = new Font("Segoe UI", 12F);
             btnRegistroUsuarioForm.ForeColor = Color.Transparent;
             btnRegistroUsuarioForm.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRegistroUsuarioForm.Location = new Point(-1, 130);
+            btnRegistroUsuarioForm.Location = new Point(0, 155);
             btnRegistroUsuarioForm.Margin = new Padding(3, 2, 3, 2);
             btnRegistroUsuarioForm.Name = "btnRegistroUsuarioForm";
             btnRegistroUsuarioForm.Size = new Size(200, 35);
@@ -210,6 +211,7 @@
             // pnlDashboard
             // 
             pnlDashboard.BackColor = Color.FromArgb(26, 32, 40);
+            pnlDashboard.Controls.Add(btnCompras);
             pnlDashboard.Controls.Add(btnMenu);
             pnlDashboard.Controls.Add(btnProductos);
             pnlDashboard.Controls.Add(btnEmpleados);
@@ -223,6 +225,27 @@
             pnlDashboard.Name = "pnlDashboard";
             pnlDashboard.Size = new Size(200, 615);
             pnlDashboard.TabIndex = 1;
+            // 
+            // btnCompras
+            // 
+            btnCompras.BackColor = Color.FromArgb(26, 32, 40);
+            btnCompras.Cursor = Cursors.Hand;
+            btnCompras.FlatAppearance.BorderSize = 0;
+            btnCompras.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
+            btnCompras.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
+            btnCompras.FlatStyle = FlatStyle.Flat;
+            btnCompras.Font = new Font("Segoe UI", 12F);
+            btnCompras.ForeColor = Color.Transparent;
+            btnCompras.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCompras.Location = new Point(0, 103);
+            btnCompras.Margin = new Padding(3, 2, 3, 2);
+            btnCompras.Name = "btnCompras";
+            btnCompras.Size = new Size(200, 35);
+            btnCompras.TabIndex = 13;
+            btnCompras.Text = "Compras";
+            btnCompras.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnCompras.UseVisualStyleBackColor = false;
+            btnCompras.Click += btnCompras_Click;
             // 
             // btnMenu
             // 
@@ -249,7 +272,7 @@
             btnProductos.Font = new Font("Segoe UI", 12F);
             btnProductos.ForeColor = Color.Transparent;
             btnProductos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProductos.Location = new Point(-1, 71);
+            btnProductos.Location = new Point(-1, 53);
             btnProductos.Margin = new Padding(3, 2, 3, 2);
             btnProductos.Name = "btnProductos";
             btnProductos.Size = new Size(200, 35);
@@ -270,10 +293,10 @@
             btnEmpleados.Font = new Font("Segoe UI", 12F);
             btnEmpleados.ForeColor = Color.Transparent;
             btnEmpleados.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEmpleados.Location = new Point(1, 302);
+            btnEmpleados.Location = new Point(-1, 309);
             btnEmpleados.Margin = new Padding(3, 2, 3, 2);
             btnEmpleados.Name = "btnEmpleados";
-            btnEmpleados.Size = new Size(200, 35);
+            btnEmpleados.Size = new Size(202, 35);
             btnEmpleados.TabIndex = 11;
             btnEmpleados.Text = "Empleados";
             btnEmpleados.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -291,10 +314,10 @@
             btnClientes.Font = new Font("Segoe UI", 12F);
             btnClientes.ForeColor = Color.Transparent;
             btnClientes.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClientes.Location = new Point(1, 245);
+            btnClientes.Location = new Point(-1, 257);
             btnClientes.Margin = new Padding(3, 2, 3, 2);
             btnClientes.Name = "btnClientes";
-            btnClientes.Size = new Size(196, 35);
+            btnClientes.Size = new Size(202, 35);
             btnClientes.TabIndex = 10;
             btnClientes.Text = "Clientes";
             btnClientes.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -312,7 +335,7 @@
             btnVentas.Font = new Font("Segoe UI", 12F);
             btnVentas.ForeColor = Color.Transparent;
             btnVentas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnVentas.Location = new Point(-1, 187);
+            btnVentas.Location = new Point(0, 205);
             btnVentas.Margin = new Padding(3, 2, 3, 2);
             btnVentas.Name = "btnVentas";
             btnVentas.Size = new Size(200, 35);
@@ -583,5 +606,6 @@
         private Button btnEmpleados;
         private Button btnUsuario;
         private Button btnMenu;
+        private Button btnCompras;
     }
 }

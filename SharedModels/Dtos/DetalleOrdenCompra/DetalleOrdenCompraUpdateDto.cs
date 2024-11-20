@@ -31,5 +31,6 @@ namespace SharedModels.Dtos.DetalleOrdenCompra
         public DateTime ReturnDeadline { get; set; }
 
         public DateTime ModifiedDate { get; set; } 
+        public string OrderNumber { get; set; }
     }
 }

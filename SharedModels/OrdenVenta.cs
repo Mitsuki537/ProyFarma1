@@ -12,6 +12,7 @@ namespace SharedModels
         public int IdCustomer { get; set; }
         public int IdEmployee { get; set; }
         public DateTime OrderDate { get; set; }
+        public string OrderNumber { get; set; }
         public DateTime ModifiedDate { get; set; }
     }
 }

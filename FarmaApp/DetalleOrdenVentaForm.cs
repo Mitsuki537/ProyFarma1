@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace FarmaApp
 {
-    public partial class VentasForm : Form
+    public partial class DetalleOrdenVentaForm : Form
     {
-        public VentasForm()
+        public DetalleOrdenVentaForm()
         {
             InitializeComponent();
         }

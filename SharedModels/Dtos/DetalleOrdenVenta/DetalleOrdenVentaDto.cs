@@ -16,5 +16,6 @@ namespace SharedModels.Dtos.DetalleOrdenVenta
         public decimal? Discount { get; set; }
         public decimal LineTotal { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public string? OrderNumber { get; set; }
     }
 }
