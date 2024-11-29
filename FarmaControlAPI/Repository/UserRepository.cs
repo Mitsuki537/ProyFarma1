@@ -11,6 +11,32 @@ namespace FarmaControlAPI.Repository
         {
             _dbContext = dbContext;
         }
+        public async Task<Usuario> GetByUsernameAsync(string username)
+        {
+            using var connection = _dbContext.GetConnection();
+            await connection.OpenAsync();
+
+            var command = new SqlCommand("SELECT Id_User, Username, PasswordHash, Id_Employee, Role, CreatedDate, ModifiedDate " +
+                                          "FROM [Employees].[Users] WHERE Username = @Username", connection);
+
+            command.Parameters.AddWithValue("@Username", username);
+
+            using var reader = await command.ExecuteReaderAsync();
+            if (await reader.ReadAsync())
+            {
+                return new Usuario
+                {
+                    IdUser = reader.GetInt32(0),
+                    Username = reader.GetString(1),
+                    PasswordHash = reader.GetString(2),
+                    IdEmployee = reader.GetInt32(3),
+                    Role = reader.GetString(4),
+                    CreatedDate = reader.GetDateTime(5),
+                    ModifiedDate = reader.GetDateTime(6)
+                };
+            }
+            return null;
+        }
 
         public async Task<int> CreateAsync(Usuario entity)
         {

@@ -30,12 +30,6 @@
         {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuForm));
-            pnlTitulo = new Panel();
-            btnUsuario = new Button();
-            btnMaximizar = new Button();
-            btnNormal = new Button();
-            btnMinimizar = new Button();
-            btnCerrar = new Button();
             btnReportes = new Button();
             btnRegistroUsuarioForm = new Button();
             pnlDashboard = new Panel();
@@ -61,114 +55,14 @@
             pnlContenedorForm = new Panel();
             tmExpandirMenu = new System.Windows.Forms.Timer(components);
             tmContraerMenu = new System.Windows.Forms.Timer(components);
-            pnlTitulo.SuspendLayout();
+            btnUsuario = new Button();
             pnlDashboard.SuspendLayout();
             pnlSubReportes.SuspendLayout();
             SuspendLayout();
             // 
-            // pnlTitulo
-            // 
-            pnlTitulo.BackColor = Color.FromArgb(0, 80, 200);
-            pnlTitulo.Controls.Add(btnUsuario);
-            pnlTitulo.Controls.Add(btnMaximizar);
-            pnlTitulo.Controls.Add(btnNormal);
-            pnlTitulo.Controls.Add(btnMinimizar);
-            pnlTitulo.Controls.Add(btnCerrar);
-            pnlTitulo.Dock = DockStyle.Top;
-            pnlTitulo.Location = new Point(0, 0);
-            pnlTitulo.Name = "pnlTitulo";
-            pnlTitulo.Size = new Size(1300, 35);
-            pnlTitulo.TabIndex = 0;
-            pnlTitulo.MouseDown += pnlTitulo_MouseDown;
-            // 
-            // btnUsuario
-            // 
-            btnUsuario.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnUsuario.Cursor = Cursors.Hand;
-            btnUsuario.FlatAppearance.BorderSize = 0;
-            btnUsuario.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
-            btnUsuario.FlatAppearance.MouseOverBackColor = Color.FromArgb(26, 32, 40);
-            btnUsuario.FlatStyle = FlatStyle.Flat;
-            btnUsuario.Font = new Font("Segoe UI", 12F);
-            btnUsuario.ForeColor = Color.White;
-            btnUsuario.Image = (Image)resources.GetObject("btnUsuario.Image");
-            btnUsuario.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUsuario.Location = new Point(1004, 1);
-            btnUsuario.Margin = new Padding(3, 2, 3, 2);
-            btnUsuario.Name = "btnUsuario";
-            btnUsuario.Size = new Size(130, 35);
-            btnUsuario.TabIndex = 8;
-            btnUsuario.Text = "     Usuario";
-            btnUsuario.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnUsuario.UseVisualStyleBackColor = true;
-            btnUsuario.Click += btnUsuario_Click;
-            // 
-            // btnMaximizar
-            // 
-            btnMaximizar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnMaximizar.BackColor = Color.Transparent;
-            btnMaximizar.Cursor = Cursors.Hand;
-            btnMaximizar.FlatAppearance.BorderSize = 0;
-            btnMaximizar.FlatAppearance.MouseOverBackColor = Color.FromArgb(26, 32, 40);
-            btnMaximizar.FlatStyle = FlatStyle.Flat;
-            btnMaximizar.Image = (Image)resources.GetObject("btnMaximizar.Image");
-            btnMaximizar.Location = new Point(1197, 1);
-            btnMaximizar.Name = "btnMaximizar";
-            btnMaximizar.Size = new Size(50, 35);
-            btnMaximizar.TabIndex = 3;
-            btnMaximizar.UseVisualStyleBackColor = true;
-            btnMaximizar.Click += btnMaximizar_Click;
-            // 
-            // btnNormal
-            // 
-            btnNormal.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnNormal.Cursor = Cursors.Hand;
-            btnNormal.FlatAppearance.BorderSize = 0;
-            btnNormal.FlatAppearance.MouseOverBackColor = Color.FromArgb(26, 32, 40);
-            btnNormal.FlatStyle = FlatStyle.Flat;
-            btnNormal.Image = (Image)resources.GetObject("btnNormal.Image");
-            btnNormal.Location = new Point(1198, 1);
-            btnNormal.Name = "btnNormal";
-            btnNormal.Size = new Size(45, 35);
-            btnNormal.TabIndex = 8;
-            btnNormal.UseVisualStyleBackColor = true;
-            btnNormal.Click += btnNormal_Click;
-            // 
-            // btnMinimizar
-            // 
-            btnMinimizar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnMinimizar.BackColor = Color.Transparent;
-            btnMinimizar.Cursor = Cursors.Hand;
-            btnMinimizar.FlatAppearance.BorderSize = 0;
-            btnMinimizar.FlatAppearance.MouseOverBackColor = Color.FromArgb(26, 32, 40);
-            btnMinimizar.FlatStyle = FlatStyle.Flat;
-            btnMinimizar.ForeColor = SystemColors.ControlText;
-            btnMinimizar.Image = (Image)resources.GetObject("btnMinimizar.Image");
-            btnMinimizar.Location = new Point(1140, -3);
-            btnMinimizar.Name = "btnMinimizar";
-            btnMinimizar.Size = new Size(51, 40);
-            btnMinimizar.TabIndex = 7;
-            btnMinimizar.UseVisualStyleBackColor = true;
-            btnMinimizar.Click += btnMinimizar_Click;
-            // 
-            // btnCerrar
-            // 
-            btnCerrar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnCerrar.BackColor = Color.Transparent;
-            btnCerrar.Cursor = Cursors.Hand;
-            btnCerrar.FlatAppearance.BorderSize = 0;
-            btnCerrar.FlatAppearance.MouseOverBackColor = Color.FromArgb(26, 32, 40);
-            btnCerrar.FlatStyle = FlatStyle.Flat;
-            btnCerrar.Image = (Image)resources.GetObject("btnCerrar.Image");
-            btnCerrar.Location = new Point(1250, 0);
-            btnCerrar.Name = "btnCerrar";
-            btnCerrar.Size = new Size(45, 35);
-            btnCerrar.TabIndex = 6;
-            btnCerrar.UseVisualStyleBackColor = true;
-            btnCerrar.Click += btnCerrar_Click;
-            // 
             // btnReportes
             // 
+            btnReportes.BackColor = Color.FromArgb(26, 32, 40);
             btnReportes.Cursor = Cursors.Hand;
             btnReportes.FlatAppearance.BorderSize = 0;
             btnReportes.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
@@ -177,7 +71,7 @@
             btnReportes.Font = new Font("Segoe UI", 12F);
             btnReportes.ForeColor = Color.Transparent;
             btnReportes.ImageAlign = ContentAlignment.MiddleLeft;
-            btnReportes.Location = new Point(0, 358);
+            btnReportes.Location = new Point(0, 362);
             btnReportes.Margin = new Padding(3, 2, 3, 2);
             btnReportes.Name = "btnReportes";
             btnReportes.Size = new Size(200, 35);
@@ -198,7 +92,7 @@
             btnRegistroUsuarioForm.Font = new Font("Segoe UI", 12F);
             btnRegistroUsuarioForm.ForeColor = Color.Transparent;
             btnRegistroUsuarioForm.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRegistroUsuarioForm.Location = new Point(0, 155);
+            btnRegistroUsuarioForm.Location = new Point(-1, 180);
             btnRegistroUsuarioForm.Margin = new Padding(3, 2, 3, 2);
             btnRegistroUsuarioForm.Name = "btnRegistroUsuarioForm";
             btnRegistroUsuarioForm.Size = new Size(200, 35);
@@ -211,6 +105,7 @@
             // pnlDashboard
             // 
             pnlDashboard.BackColor = Color.FromArgb(26, 32, 40);
+            pnlDashboard.Controls.Add(btnUsuario);
             pnlDashboard.Controls.Add(btnCompras);
             pnlDashboard.Controls.Add(btnMenu);
             pnlDashboard.Controls.Add(btnProductos);
@@ -221,9 +116,10 @@
             pnlDashboard.Controls.Add(pnlSubReportes);
             pnlDashboard.Controls.Add(btnReportes);
             pnlDashboard.Dock = DockStyle.Left;
-            pnlDashboard.Location = new Point(0, 35);
+            pnlDashboard.ForeColor = SystemColors.ActiveCaption;
+            pnlDashboard.Location = new Point(0, 0);
             pnlDashboard.Name = "pnlDashboard";
-            pnlDashboard.Size = new Size(200, 615);
+            pnlDashboard.Size = new Size(200, 610);
             pnlDashboard.TabIndex = 1;
             // 
             // btnCompras
@@ -237,7 +133,7 @@
             btnCompras.Font = new Font("Segoe UI", 12F);
             btnCompras.ForeColor = Color.Transparent;
             btnCompras.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCompras.Location = new Point(0, 103);
+            btnCompras.Location = new Point(-1, 134);
             btnCompras.Margin = new Padding(3, 2, 3, 2);
             btnCompras.Name = "btnCompras";
             btnCompras.Size = new Size(200, 35);
@@ -272,7 +168,7 @@
             btnProductos.Font = new Font("Segoe UI", 12F);
             btnProductos.ForeColor = Color.Transparent;
             btnProductos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProductos.Location = new Point(-1, 53);
+            btnProductos.Location = new Point(-1, 90);
             btnProductos.Margin = new Padding(3, 2, 3, 2);
             btnProductos.Name = "btnProductos";
             btnProductos.Size = new Size(200, 35);
@@ -293,10 +189,10 @@
             btnEmpleados.Font = new Font("Segoe UI", 12F);
             btnEmpleados.ForeColor = Color.Transparent;
             btnEmpleados.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEmpleados.Location = new Point(-1, 309);
+            btnEmpleados.Location = new Point(-3, 317);
             btnEmpleados.Margin = new Padding(3, 2, 3, 2);
             btnEmpleados.Name = "btnEmpleados";
-            btnEmpleados.Size = new Size(202, 35);
+            btnEmpleados.Size = new Size(200, 35);
             btnEmpleados.TabIndex = 11;
             btnEmpleados.Text = "Empleados";
             btnEmpleados.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -314,10 +210,10 @@
             btnClientes.Font = new Font("Segoe UI", 12F);
             btnClientes.ForeColor = Color.Transparent;
             btnClientes.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClientes.Location = new Point(-1, 257);
+            btnClientes.Location = new Point(-1, 272);
             btnClientes.Margin = new Padding(3, 2, 3, 2);
             btnClientes.Name = "btnClientes";
-            btnClientes.Size = new Size(202, 35);
+            btnClientes.Size = new Size(200, 35);
             btnClientes.TabIndex = 10;
             btnClientes.Text = "Clientes";
             btnClientes.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -335,7 +231,7 @@
             btnVentas.Font = new Font("Segoe UI", 12F);
             btnVentas.ForeColor = Color.Transparent;
             btnVentas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnVentas.Location = new Point(0, 205);
+            btnVentas.Location = new Point(-3, 226);
             btnVentas.Margin = new Padding(3, 2, 3, 2);
             btnVentas.Name = "btnVentas";
             btnVentas.Size = new Size(200, 35);
@@ -360,7 +256,7 @@
             pnlSubReportes.Controls.Add(btnRptEmpleados);
             pnlSubReportes.Controls.Add(btnRptProductos);
             pnlSubReportes.Controls.Add(btnRptInventario);
-            pnlSubReportes.Location = new Point(44, 394);
+            pnlSubReportes.Location = new Point(44, 400);
             pnlSubReportes.Name = "pnlSubReportes";
             pnlSubReportes.Size = new Size(155, 209);
             pnlSubReportes.TabIndex = 0;
@@ -544,9 +440,9 @@
             // 
             pnlContenedorForm.BackColor = Color.FromArgb(49, 66, 82);
             pnlContenedorForm.Dock = DockStyle.Fill;
-            pnlContenedorForm.Location = new Point(200, 35);
+            pnlContenedorForm.Location = new Point(200, 0);
             pnlContenedorForm.Name = "pnlContenedorForm";
-            pnlContenedorForm.Size = new Size(1100, 615);
+            pnlContenedorForm.Size = new Size(1100, 610);
             pnlContenedorForm.TabIndex = 2;
             // 
             // tmExpandirMenu
@@ -557,32 +453,45 @@
             // 
             tmContraerMenu.Tick += tmContraerMenu_Tick;
             // 
+            // btnUsuario
+            // 
+            btnUsuario.BackColor = Color.FromArgb(26, 32, 40);
+            btnUsuario.Cursor = Cursors.Hand;
+            btnUsuario.FlatAppearance.BorderSize = 0;
+            btnUsuario.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
+            btnUsuario.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
+            btnUsuario.FlatStyle = FlatStyle.Flat;
+            btnUsuario.Font = new Font("Segoe UI", 12F);
+            btnUsuario.ForeColor = Color.Transparent;
+            btnUsuario.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUsuario.Location = new Point(0, 50);
+            btnUsuario.Margin = new Padding(3, 2, 3, 2);
+            btnUsuario.Name = "btnUsuario";
+            btnUsuario.Size = new Size(200, 35);
+            btnUsuario.TabIndex = 14;
+            btnUsuario.Text = "Usuario";
+            btnUsuario.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnUsuario.UseVisualStyleBackColor = false;
+            btnUsuario.Click += btnUsuario_Click_1;
+            // 
             // MenuForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1300, 650);
+            ClientSize = new Size(1300, 610);
             Controls.Add(pnlContenedorForm);
             Controls.Add(pnlDashboard);
-            Controls.Add(pnlTitulo);
             FormBorderStyle = FormBorderStyle.None;
             Name = "MenuForm";
             Text = "MenuForm";
-            pnlTitulo.ResumeLayout(false);
             pnlDashboard.ResumeLayout(false);
             pnlSubReportes.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel pnlTitulo;
         private Panel pnlDashboard;
         private Panel pnlContenedorForm;
-        private Button btnCerrar;
-        private Button btnMaximizar;
-        private Button btnNormal;
-        private Button btnMinimizar;
         private System.Windows.Forms.Timer tmExpandirMenu;
         private System.Windows.Forms.Timer tmContraerMenu;
         private Button btnRegistroUsuarioForm;
@@ -604,8 +513,8 @@
         private Button btnClientes;
         private Button btnProductos;
         private Button btnEmpleados;
-        private Button btnUsuario;
         private Button btnMenu;
         private Button btnCompras;
+        private Button btnUsuario;
     }
 }

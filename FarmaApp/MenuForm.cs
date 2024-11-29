@@ -12,7 +12,9 @@ namespace FarmaApp
 {
     public partial class MenuForm : Form
     {
+        public string Token { get; set; }
         private Color originalColor;
+
         public MenuForm()
         {
             InitializeComponent();
@@ -24,14 +26,8 @@ namespace FarmaApp
             originalColor = btnReportes.BackColor;
         }
 
-        private void btnMinimizar_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
         private void tmExpandirMenu_Tick(object sender, EventArgs e)
         {
-
             if (pnlDashboard.Width >= 200)
                 tmExpandirMenu.Stop();
             else
@@ -45,27 +41,6 @@ namespace FarmaApp
             else
                 pnlDashboard.Width -= 5;
         }
-        int lx, ly;
-        int sw, sh;
-        private void btnMaximizar_Click(object sender, EventArgs e)
-        {
-            lx = this.Location.X;
-            ly = this.Location.Y;
-            sw = this.Size.Width;
-            sh = this.Size.Height;
-            this.Size = Screen.PrimaryScreen.WorkingArea.Size;
-            this.Location = Screen.PrimaryScreen.WorkingArea.Location;
-            btnMaximizar.Visible = false;
-            btnNormal.Visible = true;
-        }
-
-        private void btnNormal_Click(object sender, EventArgs e)
-        {
-            this.Size = new Size(sw, sh);
-            this.Location = new Point(lx, ly);
-            btnNormal.Visible = false;
-            btnMaximizar.Visible = true;
-        }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
@@ -75,7 +50,7 @@ namespace FarmaApp
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
         [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
         private void pnlTitulo_MouseDown(object sender, MouseEventArgs e)
         {
@@ -110,7 +85,7 @@ namespace FarmaApp
             AbrirFormEnPanel(frm);
         }
 
-        private void AbrirFormEnPanel(ProductosCategoriasForm frm)
+        private void AbrirFormEnPanel(Form frm)
         {
             if (pnlContenedorForm.Controls.Count > 0)
                 pnlContenedorForm.Controls.RemoveAt(0);
@@ -128,34 +103,10 @@ namespace FarmaApp
             AbrirFormEnPanel(frm);
         }
 
-        private void AbrirFormEnPanel(ProveedoresForm frm)
-        {
-            if (pnlContenedorForm.Controls.Count > 0)
-                pnlContenedorForm.Controls.RemoveAt(0);
-            frm.TopLevel = false;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            pnlContenedorForm.Controls.Add(frm);
-            pnlContenedorForm.Tag = frm;
-            frm.Show();
-        }
-
         private void btnVentas_Click(object sender, EventArgs e)
         {
             VentasContenedor frm = new VentasContenedor();
             AbrirFormEnPanel(frm);
-        }
-
-        private void AbrirFormEnPanel(VentasContenedor frm)
-        {
-            if (pnlContenedorForm.Controls.Count > 0)
-                pnlContenedorForm.Controls.RemoveAt(0);
-            frm.TopLevel = false;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            pnlContenedorForm.Controls.Add(frm);
-            pnlContenedorForm.Tag = frm;
-            frm.Show();
         }
 
         private void btnEmpleados_Click(object sender, EventArgs e)
@@ -164,52 +115,10 @@ namespace FarmaApp
             AbrirFormEnPanel(frm);
         }
 
-        private void AbrirFormEnPanel(EmpleadosForm frm)
-        {
-            if (pnlContenedorForm.Controls.Count > 0)
-                pnlContenedorForm.Controls.RemoveAt(0);
-            frm.TopLevel = false;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            pnlContenedorForm.Controls.Add(frm);
-            pnlContenedorForm.Tag = frm;
-            frm.Show();
-        }
-
-        private void btnUsuario_Click(object sender, EventArgs e)
-        {
-            UsuarioForm frm = new UsuarioForm();
-            AbrirFormEnPanel(frm);
-        }
-
-        private void AbrirFormEnPanel(UsuarioForm frm)
-        {
-            if (pnlContenedorForm.Controls.Count > 0)
-                pnlContenedorForm.Controls.RemoveAt(0);
-            frm.TopLevel = false;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            pnlContenedorForm.Controls.Add(frm);
-            pnlContenedorForm.Tag = frm;
-            frm.Show();
-        }
-
         private void btnClientes_Click(object sender, EventArgs e)
         {
             ClientesForm frm = new ClientesForm();
             AbrirFormEnPanel(frm);
-        }
-
-        private void AbrirFormEnPanel(ClientesForm frm)
-        {
-            if (pnlContenedorForm.Controls.Count > 0)
-                pnlContenedorForm.Controls.RemoveAt(0);
-            frm.TopLevel = false;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            pnlContenedorForm.Controls.Add(frm);
-            pnlContenedorForm.Tag = frm;
-            frm.Show();
         }
 
         private void btnCompras_Click(object sender, EventArgs e)
@@ -218,16 +127,11 @@ namespace FarmaApp
             AbrirFormEnPanel(frm);
         }
 
-        private void AbrirFormEnPanel(ComprasContenedor frm)
+        private void btnUsuario_Click_1(object sender, EventArgs e)
         {
-            if (pnlContenedorForm.Controls.Count > 0)
-                pnlContenedorForm.Controls.RemoveAt(0);
-            frm.TopLevel = false;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            pnlContenedorForm.Controls.Add(frm);
-            pnlContenedorForm.Tag = frm;
-            frm.Show();
+            UsuarioForm frm = new UsuarioForm();
+            AbrirFormEnPanel(frm);
         }
     }
 }
+

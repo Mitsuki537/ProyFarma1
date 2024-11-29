@@ -5,6 +5,7 @@ using SharedModels.Dtos.Producto;
 
 namespace FarmaControlAPI.Controller
 {
+
     [ApiController]
     [Route("api/[controller]")]
     public class ProductoController : ControllerBase

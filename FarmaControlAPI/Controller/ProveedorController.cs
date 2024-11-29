@@ -1,4 +1,5 @@
 ﻿using FarmaControlAPI.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedModels;
 using SharedModels.Dtos.Compras;
@@ -6,6 +7,7 @@ using SharedModels.Dtos.Proveedor;
 
 namespace FarmaControlAPI.Controller
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
 

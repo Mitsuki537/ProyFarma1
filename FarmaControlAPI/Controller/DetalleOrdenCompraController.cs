@@ -1,10 +1,12 @@
 ﻿using FarmaControlAPI.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedModels;
 using SharedModels.Dtos.DetalleOrdenCompra;
 
 namespace FarmaControlAPI.Controller
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class DetalleOrdenCompraController : ControllerBase

@@ -8,5 +8,6 @@
         Task<bool> UpdateAsync(T entity);
         Task<bool> DeleteAsync(int id);
         Task<bool> EmployeeExistAsync(int idEmployee);
+        Task<T> GetByUsernameAsync(string username);
     }
 }

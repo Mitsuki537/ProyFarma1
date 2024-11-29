@@ -1,4 +1,5 @@
 ﻿using FarmaControlAPI.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SharedModels;
 using SharedModels.Dtos.Empleado;
@@ -6,6 +7,7 @@ using SharedModels.Dtos.Usuario;
 
 namespace FarmaControlAPI.Controller
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class EmpleadoController : ControllerBase
