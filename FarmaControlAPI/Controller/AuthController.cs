@@ -36,7 +36,26 @@ namespace FarmaControlAPI.Controller
                 return Unauthorized("Usuario no encontrado.");
             }
 
-            var isValidPassword = BCrypt.Net.BCrypt.Verify(loginDto.Password, user.PasswordHash);
+            // Verificar si la contraseña almacenada en la base de datos ya está hasheada
+            bool isValidPassword = false;
+            if (user.PasswordHash.StartsWith("$2a$") || user.PasswordHash.StartsWith("$2b$")) // Indica que es un hash BCrypt
+            {
+                // Si ya está hasheada, simplemente la verificamos
+                isValidPassword = BCrypt.Net.BCrypt.Verify(loginDto.Password, user.PasswordHash);
+            }
+            else
+            {
+                // Si no está hasheada, hasheamos la contraseña
+                _logger.LogInformation("Contraseña no hasheada, procediendo a hashearla.");
+                var hashedPassword = BCrypt.Net.BCrypt.HashPassword(loginDto.Password);
+                user.PasswordHash = hashedPassword;
+
+                // Actualizar la contraseña hasheada en la base de datos
+                await _userRepository.UpdateAsync(user);  // Asume que tienes un método Update en tu repositorio
+
+                isValidPassword = true;  // Ahora que la hemos hasheado, consideramos que es válida
+            }
+
             if (!isValidPassword)
             {
                 _logger.LogWarning("Contraseña incorrecta para el usuario: {Username}", loginDto.Username);
@@ -47,8 +66,6 @@ namespace FarmaControlAPI.Controller
             var token = GenerateJwtToken(user);
             return Ok(new { Token = token });
         }
-
-
 
         private string GenerateJwtToken(Usuario user)
         {
