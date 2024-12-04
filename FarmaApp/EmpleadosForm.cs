@@ -46,8 +46,11 @@ namespace FarmaApp
             try
             {
                 var empleados = await _apiClient.Empleados.GetAllAsync();
+                /*
                 this.empleados = empleados?.ToList() ?? new List<EmpleadoDto>();
-                dgvEmpleados.DataSource = this.empleados;
+                dgvEmpleados.DataSource = this.empleados;*/
+                dgvEmpleados.DataSource = null; 
+                dgvEmpleados.DataSource = empleados;
             }
             catch (Exception ex)
             {
@@ -75,6 +78,12 @@ namespace FarmaApp
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellido.Text))
+                {
+                    MessageBox.Show("Por favor, complete los campos obligatorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 var nuevoEmpleado = new EmpleadoCreateDto
                 {
                     FirstName = txtNombre.Text.Trim(),
@@ -85,32 +94,23 @@ namespace FarmaApp
                     Email = txtCorreo.Text.Trim(),
                     Phone = mtbTelefono.Text.Trim(),
                     Department = txtDepartamento.Text.Trim(),
-                    ReportsTo = cboReportadoA.SelectedValue as int?
+                    ReportsTo = (int?)cboReportadoA.SelectedValue
                 };
 
-                var newId = await _apiClient.Empleados.CreateAsync(nuevoEmpleado);
+                var newEmployeeId = await _apiClient.Empleados.CreateAsync(nuevoEmpleado);
 
-                var nuevoEmpleadoDto = new EmpleadoDto
-                {
-                    IdEmployee = newId,
-                    FirstName = nuevoEmpleado.FirstName,
-                    LastName = nuevoEmpleado.LastName,
-                    Title = nuevoEmpleado.Title,
-                    HireDate = nuevoEmpleado.HireDate,
-                    BirthDate = nuevoEmpleado.BirthDate,
-                    Email = nuevoEmpleado.Email,
-                    Phone = nuevoEmpleado.Phone,
-                    Department = nuevoEmpleado.Department,
-                    ReportsTo = nuevoEmpleado.ReportsTo,
-                    ModifiedDate = DateTime.Now
-                };
+               /* var empleadoCreado = await _apiClient.Empleados.GetByIdAsync(newEmployeeId);
 
-                empleados.Add(nuevoEmpleadoDto);
+                empleados.Add(empleadoCreado);
                 dgvEmpleados.DataSource = null; 
-                dgvEmpleados.DataSource = empleados;
+                dgvEmpleados.DataSource = empleados;*/
+                await LoadEmpleadosAsync();
 
                 MessageBox.Show("Empleado creado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 ClearInputs();
+
+ 
             }
             catch (Exception ex)
             {

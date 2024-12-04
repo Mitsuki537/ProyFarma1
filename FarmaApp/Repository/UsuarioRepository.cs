@@ -68,13 +68,18 @@ namespace FarmaApp.Repository
 
             if (response.IsSuccessStatusCode)
             {
+              
                 var result = await response.Content.ReadAsStringAsync();
-                if (string.IsNullOrEmpty(result)) throw new Exception("La API devolvió una respuesta vacía.");
-                var createdUser = JsonConvert.DeserializeObject<UsuarioDto>(result);
-                if (createdUser == null) throw new Exception("No se pudo deserializar la respuesta de la API.");
-                return createdUser.IdUser;
+                if (int.TryParse(result, out int id))
+                {
+                    return id; 
+                }
+
+                throw new Exception("Error inesperado al procesar la respuesta del servidor.");
             }
-            throw new Exception($"Error al crear recurso: {await response.Content.ReadAsStringAsync()}");
+
+            var errorResponse = await response.Content.ReadAsStringAsync();
+            throw new Exception($"Error al crear recurso: {errorResponse}");
         }
     
 

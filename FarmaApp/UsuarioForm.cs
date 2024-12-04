@@ -72,46 +72,26 @@ namespace FarmaApp
         {
             try
             {
-                if (cboEmpleado.SelectedItem == null)
+                if (string.IsNullOrWhiteSpace(txtUsuario.Text) || string.IsNullOrWhiteSpace(txtContraseña.Text))
                 {
-                    MessageBox.Show("Debe seleccionar un empleado.", "Advertencia");
+                    MessageBox.Show("Por favor, complete todos los campos requeridos.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
-                if (string.IsNullOrEmpty(txtContraseña.Text))
-                {
-                    MessageBox.Show("Debe ingresar una contraseña.", "Advertencia");
-                    return;
-                }
-
-                var idEmployee = (int)cboEmpleado.SelectedValue;
-                var passwordHash = BCrypt.Net.BCrypt.HashPassword(txtContraseña.Text);
 
                 var nuevoUsuario = new UsuarioCreateDto
                 {
-                    Username = txtUsuario.Text,
-                    PasswordHash = passwordHash,
-                    IdEmployee = idEmployee,
-                    Role = txtRol.Text
+                    Username = txtUsuario.Text.Trim(),
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword(txtContraseña.Text.Trim()), // Generar el hash
+                    IdEmployee = (int)cboEmpleado.SelectedValue,
+                    Role = txtRol.Text.Trim()
                 };
 
-                var userId = await _apiClient.Usuario.CreateAsync(nuevoUsuario);
+                var newUserId = await _apiClient.Usuario.CreateAsync(nuevoUsuario);
 
-                var nuevoUsuarioDetalle = new UsuarioDto
-                {
-                    IdUser = userId,
-                    Username = nuevoUsuario.Username,
-                    IdEmployee = nuevoUsuario.IdEmployee,
-                    Role = nuevoUsuario.Role,
-                    CreatedDate = DateTime.Now,
-                    ModifiedDate = DateTime.Now
-                };
-
-                usuarios.Add(nuevoUsuarioDetalle);
-                dgvUsuarios.DataSource = null;
-                dgvUsuarios.DataSource = usuarios;
+                await LoadUsuariosAsync();
 
                 MessageBox.Show("Usuario creado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 ClearInputs();
             }
             catch (Exception ex)
@@ -125,8 +105,12 @@ namespace FarmaApp
             try
             {
                 var usuarios = await _apiClient.Usuario.GetAllAsync();
+                /*
                 dgvUsuarios.DataSource = null; 
                 dgvUsuarios.DataSource = usuarios?.ToList() ?? new List<UsuarioDto>();
+                */
+                dgvUsuarios.DataSource = null;
+                dgvUsuarios.DataSource = usuarios;
             }
             catch (Exception ex)
             {
