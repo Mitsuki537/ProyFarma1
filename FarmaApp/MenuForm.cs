@@ -14,8 +14,8 @@ namespace FarmaApp
     {
         public string Token { get; set; }
         private Color originalColor;
-
-        public MenuForm()
+        private readonly ApiClientFarma _apiClient;
+        public MenuForm(ApiClientFarma apiClient)
         {
             InitializeComponent();
             tmExpandirMenu.Interval = 15;
@@ -24,6 +24,7 @@ namespace FarmaApp
             tmContraerMenu.Interval = 15;
             tmContraerMenu.Tick += new EventHandler(tmContraerMenu_Tick);
             originalColor = btnReportes.BackColor;
+            _apiClient = apiClient;
         }
 
         private void tmExpandirMenu_Tick(object sender, EventArgs e)
@@ -111,7 +112,7 @@ namespace FarmaApp
 
         private void btnEmpleados_Click(object sender, EventArgs e)
         {
-            EmpleadosForm frm = new EmpleadosForm();
+            EmpleadosForm frm = new EmpleadosForm(_apiClient);
             AbrirFormEnPanel(frm);
         }
 
@@ -129,7 +130,7 @@ namespace FarmaApp
 
         private void btnUsuario_Click_1(object sender, EventArgs e)
         {
-            UsuarioForm frm = new UsuarioForm();
+            UsuarioForm frm = new UsuarioForm(_apiClient);
             AbrirFormEnPanel(frm);
         }
     }

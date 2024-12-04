@@ -135,7 +135,7 @@
         {
             if (userDto == null || !ModelState.IsValid)
             {
-                return BadRequest("Los datos del usuario son inválidos");
+                return BadRequest("Los datos del usuario son inválidos.");
             }
 
             try
@@ -149,7 +149,7 @@
                 var user = new Usuario
                 {
                     Username = userDto.Username,
-                    PasswordHash = userDto.PasswordHash,
+                    PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.PasswordHash),
                     IdEmployee = userDto.IdEmployee,
                     Role = userDto.Role,
                     CreatedDate = DateTime.Now,
@@ -159,17 +159,18 @@
                 var createdUserId = await _repository.CreateAsync(user);
                 if (createdUserId > 0)
                 {
-                    return CreatedAtAction(nameof(GetById), new { id = createdUserId }, user);
+                    return Ok(createdUserId); 
                 }
 
-                return BadRequest("No se pudo crear el usuario");
+                return BadRequest("No se pudo crear el usuario.");
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Error al crear usuario: {ex.Message}");
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error al crear el usuario");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error al crear el usuario.");
             }
         }
+
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -182,7 +183,7 @@
                 var deleted = await _repository.DeleteAsync(id);
                 if (deleted)
                 {
-                    return NoContent(); 
+                    return NoContent();
                 }
                 return NotFound("Usuario no encontrado");
             }

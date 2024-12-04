@@ -26,7 +26,7 @@ namespace FarmaControlAPI.Controller
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserLoginDto loginDto)
-        {
+        {  
             _logger.LogInformation("Intentando hacer login para el usuario: {Username}", loginDto.Username);
 
             var user = await _userRepository.GetByUsernameAsync(loginDto.Username);
@@ -36,24 +36,20 @@ namespace FarmaControlAPI.Controller
                 return Unauthorized("Usuario no encontrado.");
             }
 
-            // Verificar si la contraseña almacenada en la base de datos ya está hasheada
             bool isValidPassword = false;
-            if (user.PasswordHash.StartsWith("$2a$") || user.PasswordHash.StartsWith("$2b$")) // Indica que es un hash BCrypt
+            if (user.PasswordHash.StartsWith("$2a$") || user.PasswordHash.StartsWith("$2b$")) 
             {
-                // Si ya está hasheada, simplemente la verificamos
+             
                 isValidPassword = BCrypt.Net.BCrypt.Verify(loginDto.Password, user.PasswordHash);
             }
             else
             {
-                // Si no está hasheada, hasheamos la contraseña
-                _logger.LogInformation("Contraseña no hasheada, procediendo a hashearla.");
+                _logger.LogInformation("Contraseña no hasheada, procediendo a hashelarla.");
                 var hashedPassword = BCrypt.Net.BCrypt.HashPassword(loginDto.Password);
                 user.PasswordHash = hashedPassword;
 
-                // Actualizar la contraseña hasheada en la base de datos
-                await _userRepository.UpdateAsync(user);  // Asume que tienes un método Update en tu repositorio
-
-                isValidPassword = true;  // Ahora que la hemos hasheado, consideramos que es válida
+                await _userRepository.UpdateAsync(user); 
+                isValidPassword = true;  
             }
 
             if (!isValidPassword)

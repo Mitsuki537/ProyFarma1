@@ -79,15 +79,8 @@ namespace FarmaApp
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            /*if (isLocked)
-            {
-                lblStatus.Text = "El acceso está bloqueado temporalmente. Intenta más tarde.";
-                return;
-            }*/
-
             bool hasErrors = false;
 
-            // Validar usuario
             if (string.IsNullOrWhiteSpace(txtEmail.Text) || txtEmail.Text == "Usuario")
             {
                 errorProvider.SetError(txtEmail, "El nombre de usuario es requerido.");
@@ -98,7 +91,6 @@ namespace FarmaApp
                 errorProvider.SetError(txtEmail, "");
             }
 
-            // Validar contraseña
             if (string.IsNullOrWhiteSpace(txtPassword.Text) || txtPassword.Text == "Contraseña")
             {
                 errorProvider.SetError(txtPassword, "La contraseña es requerida.");
@@ -131,15 +123,11 @@ namespace FarmaApp
                 if (!response.IsSuccessStatusCode)
                 {
                     failedAttempts++;
-
+                    lblStatus.Text = $"Intentos restantes: {5 - failedAttempts}";
+                    errorProvider.SetError(txtPassword, "Credenciales incorrectas.");
                     if (failedAttempts >= 5)
                     {
                         LockAccount();
-                    }
-                    else
-                    {
-                        lblStatus.Text = $"Intentos restantes: {5 - failedAttempts}";
-                        errorProvider.SetError(txtPassword, "Credenciales incorrectas.");
                     }
                     return;
                 }
@@ -147,8 +135,7 @@ namespace FarmaApp
                 var dataString = await response.Content.ReadAsStringAsync();
                 var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(dataString);
 
-                lblStatus.Text = "Usuario autenticado correctamente.";
-                CargarMenuEnPanel(tokenResponse.Token);
+                CargarMenuEnPanel(tokenResponse.Token); 
             }
             catch (Exception ex)
             {
@@ -158,7 +145,8 @@ namespace FarmaApp
 
         private void CargarMenuEnPanel(string token)
         {
-            MenuForm menu = new MenuForm { Token = token };
+            ApiClientFarma apiClient = new ApiClientFarma(token);
+            MenuForm menu = new MenuForm(apiClient);
             menu.TopLevel = false;
             menu.Dock = DockStyle.Fill;
             panelContainer.Controls.Clear();

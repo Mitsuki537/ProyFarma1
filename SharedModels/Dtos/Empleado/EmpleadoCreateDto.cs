@@ -25,7 +25,7 @@ namespace SharedModels.Dtos.Empleado
         public string Phone { get; set; }
         [Required, StringLength(100)]
         public string Department { get; set; }
-        [Required]
+       // [Required]
         public int? ReportsTo { get; set; }
     }
 }

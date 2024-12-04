@@ -42,34 +42,40 @@ namespace FarmaControlAPI.Repository
         {
             using var connection = _dbContext.GetConnection();
             await connection.OpenAsync();
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(entity.PasswordHash);
+
+            string hashedPassword;
+            if (entity.PasswordHash.StartsWith("$2a$") || entity.PasswordHash.StartsWith("$2b$"))
+            {
+                hashedPassword = entity.PasswordHash; 
+            }
+            else
+            {
+                hashedPassword = BCrypt.Net.BCrypt.HashPassword(entity.PasswordHash); 
+            }
 
             var command = new SqlCommand("INSERT INTO [Employees].[Users] (Username, PasswordHash, Id_Employee, Role, CreatedDate, ModifiedDate) " +
                                           "VALUES (@Username, @PasswordHash, @Id_Employee, @Role, @CreatedDate, @ModifiedDate); SELECT SCOPE_IDENTITY();", connection);
 
             command.Parameters.AddWithValue("@Username", entity.Username);
-            command.Parameters.AddWithValue("@PasswordHash", hashedPassword);
+            command.Parameters.AddWithValue("@PasswordHash", hashedPassword);  
             command.Parameters.AddWithValue("@Id_Employee", entity.IdEmployee);
             command.Parameters.AddWithValue("@Role", entity.Role);
             command.Parameters.AddWithValue("@CreatedDate", DateTime.Now);
             command.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
 
+            // Devuelve el ID del nuevo usuario
             return Convert.ToInt32(await command.ExecuteScalarAsync());
         }
 
         public async Task<bool> DeleteAsync(int id)
-        {            
+        {
             using var connection = _dbContext.GetConnection();
             await connection.OpenAsync();
 
-            var deleteUsersCommand = new SqlCommand("DELETE FROM [Employees].[Users] WHERE Id_Employee = @Id_Employee", connection);
-            deleteUsersCommand.Parameters.AddWithValue("@Id_Employee", id);
-            await deleteUsersCommand.ExecuteNonQueryAsync();
+            var deleteCommand = new SqlCommand("DELETE FROM [Employees].[Users] WHERE Id_User = @Id_User", connection);
+            deleteCommand.Parameters.AddWithValue("@Id_User", id);
 
-            var deleteEmployeeCommand = new SqlCommand("DELETE FROM [Employees].[Employees] WHERE Id_Employee = @Id_Employee", connection);
-            deleteEmployeeCommand.Parameters.AddWithValue("@Id_Employee", id);
-
-            return await deleteEmployeeCommand.ExecuteNonQueryAsync() > 0;
+            return await deleteCommand.ExecuteNonQueryAsync() > 0;
         }
 
         public async Task<IEnumerable<Usuario>> GetAllAsync()
@@ -87,6 +93,9 @@ namespace FarmaControlAPI.Repository
                     {
                         IdUser = reader.GetInt32(0),
                         Username = reader.GetString(1),
+                        PasswordHash = reader.IsDBNull(2) ? null : reader.GetString(2), 
+                        IdEmployee = reader.GetInt32(3), 
+                        Role = reader.IsDBNull(4) ? null : reader.GetString(4),
                         CreatedDate = (DateTime)(reader.IsDBNull(5) ? (DateTime?)null : reader.GetDateTime(5)),
                         ModifiedDate = (DateTime)(reader.IsDBNull(6) ? (DateTime?)null : reader.GetDateTime(6))     
                     });

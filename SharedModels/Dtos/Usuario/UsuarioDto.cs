@@ -14,7 +14,7 @@ namespace SharedModels.Dtos.Usuario
         public string PasswordHash { get; set; }
         public int IdEmployee { get; set; }
         public string Role { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public DateTime ? ModifiedDate { get; set; }
     }
 }
