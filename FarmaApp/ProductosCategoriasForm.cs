@@ -12,9 +12,11 @@ namespace FarmaApp
 {
     public partial class ProductosCategoriasForm : Form
     {
-        public ProductosCategoriasForm()
+        private readonly ApiClientFarma _apiClient;
+        public ProductosCategoriasForm(ApiClientFarma apiClient)
         {
             InitializeComponent();
+            _apiClient = apiClient;
         }
 
         private void btnProductos_Click(object sender, EventArgs e)
@@ -37,7 +39,7 @@ namespace FarmaApp
 
         private void btnCategorias_Click(object sender, EventArgs e)
         {
-            CategoriasForm frm = new CategoriasForm();
+            CategoriasForm frm = new CategoriasForm(_apiClient);
             AbrirFormEnPanel(frm);
         }
 
