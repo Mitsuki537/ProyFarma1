@@ -11,7 +11,7 @@ namespace SharedModels.Dtos.Compras
     {
         [Required, StringLength(100)]
         public string SupplierName { get; set; }
-        [Required, StringLength(100)]
+      //  [Required, StringLength(100)]
         public string ContactName { get; set; }
         [Required, StringLength(100)]
         public string ContactTitle { get; set; }

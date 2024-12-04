@@ -23,7 +23,7 @@ namespace FarmaControlAPI.Repository
                                          "SELECT SCOPE_IDENTITY();", connection);
 
             command.Parameters.AddWithValue("@SupplierName", entity.SupplierName);
-            command.Parameters.AddWithValue("@ContactName", entity.ContactName);
+            command.Parameters.AddWithValue("@ContactName", entity.ContactName ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@ContactTitle", entity.ContactTitle ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@Phone", entity.Phone ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@Email", entity.Email ?? (object)DBNull.Value);
@@ -41,8 +41,8 @@ namespace FarmaControlAPI.Repository
             using var connection = _dbContext.GetConnection();
             await connection.OpenAsync();
 
-            var command = new SqlCommand("DELETE FROM [Suppliers].[Suppliers] WHERE IdSupplier = @IdSupplier", connection);
-            command.Parameters.AddWithValue("@IdSupplier", id);
+            var command = new SqlCommand("DELETE FROM [Suppliers].[Suppliers] WHERE Id_Supplier = @Id_Supplier", connection);
+            command.Parameters.AddWithValue("@Id_Supplier", id);
 
             return await command.ExecuteNonQueryAsync() > 0;
         }
@@ -81,8 +81,8 @@ namespace FarmaControlAPI.Repository
             using var connection = _dbContext.GetConnection();
             await connection.OpenAsync();
 
-            var command = new SqlCommand("SELECT * FROM [Suppliers].[Suppliers] WHERE IdSupplier = @IdSupplier", connection);
-            command.Parameters.AddWithValue("@IdSupplier", id);
+            var command = new SqlCommand("SELECT * FROM [Suppliers].[Suppliers] WHERE Id_Supplier = @Id_Supplier", connection);
+            command.Parameters.AddWithValue("@Id_Supplier", id);
 
             using var reader = await command.ExecuteReaderAsync();
             if (await reader.ReadAsync())
@@ -110,25 +110,33 @@ namespace FarmaControlAPI.Repository
             using var connection = _dbContext.GetConnection();
             await connection.OpenAsync();
 
-            var command = new SqlCommand("UPDATE [Suppliers].[Suppliers] SET " +
-                                         "SupplierName = @SupplierName, ContactName = @ContactName, ContactTitle = @ContactTitle, " +
-                                         "Phone = @Phone, Email = @Email, Address = @Address, City = @City, Country = @Country, " +
-                                         "PostalCode = @PostalCode, ModifiedDate = @ModifiedDate " +
-                                         "WHERE IdSupplier = @IdSupplier", connection);
+            try
+            {
+                var command = new SqlCommand("UPDATE [Suppliers].[Suppliers] SET " +
+                                             "SupplierName = @SupplierName, ContactName = @ContactName, ContactTitle = @ContactTitle, " +
+                                             "Phone = @Phone, Email = @Email, Address = @Address, City = @City, Country = @Country, " +
+                                             "PostalCode = @PostalCode, ModifiedDate = @ModifiedDate " +
+                                             "WHERE Id_Supplier = @Id_Supplier", connection);
 
-            command.Parameters.AddWithValue("@IdSupplier", entity.IdSupplier);
-            command.Parameters.AddWithValue("@SupplierName", entity.SupplierName);
-            command.Parameters.AddWithValue("@ContactName", entity.ContactName);
-            command.Parameters.AddWithValue("@ContactTitle", entity.ContactTitle ?? (object)DBNull.Value);
-            command.Parameters.AddWithValue("@Phone", entity.Phone ?? (object)DBNull.Value);
-            command.Parameters.AddWithValue("@Email", entity.Email ?? (object)DBNull.Value);
-            command.Parameters.AddWithValue("@Address", entity.Address ?? (object)DBNull.Value);
-            command.Parameters.AddWithValue("@City", entity.City ?? (object)DBNull.Value);
-            command.Parameters.AddWithValue("@Country", entity.Country ?? (object)DBNull.Value);
-            command.Parameters.AddWithValue("@PostalCode", entity.PostalCode ?? (object)DBNull.Value);
-            command.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
+                command.Parameters.AddWithValue("@Id_Supplier", entity.IdSupplier);
+                command.Parameters.AddWithValue("@SupplierName", entity.SupplierName);
+                command.Parameters.AddWithValue("@ContactName", entity.ContactName ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@ContactTitle", entity.ContactTitle ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@Phone", entity.Phone ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@Email", entity.Email ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@Address", entity.Address ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@City", entity.City ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@Country", entity.Country ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@PostalCode", entity.PostalCode ?? (object)DBNull.Value);
+                command.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
 
-            return await command.ExecuteNonQueryAsync() > 0;
+                return await command.ExecuteNonQueryAsync() > 0;
+            }
+            catch (Exception ex)
+            {
+                // Aquí puedes loguear el error
+                throw new Exception($"Error al actualizar el proveedor: {ex.Message}", ex);
+            }
         }
     }
 }

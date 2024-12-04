@@ -100,7 +100,7 @@ namespace FarmaApp
 
         private void btnRegistroUsuarioForm_Click(object sender, EventArgs e)
         {
-            ProveedoresForm frm = new ProveedoresForm();
+            ProveedoresForm frm = new ProveedoresForm(_apiClient);
             AbrirFormEnPanel(frm);
         }
 
