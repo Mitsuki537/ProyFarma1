@@ -95,6 +95,7 @@ namespace FarmaControlAPI.Controller
 
             try
             {
+                // Primero, se convierte el DTO a la entidad Client
                 var customer = new Client
                 {
                     FirstName = customerDto.FirstName,
@@ -103,9 +104,15 @@ namespace FarmaControlAPI.Controller
                     RegistrationDate = DateTime.Now
                 };
 
+                // Llamamos al repositorio para crear el cliente
                 var createdCustomerId = await _repository.CreateAsync(customer);
+
                 if (createdCustomerId > 0)
                 {
+                    // Asignamos el Id generado por la base de datos al objeto cliente
+                    customer.IdCustomer = createdCustomerId;
+
+                    // Devolvemos el cliente con el ID asignado
                     return CreatedAtAction(nameof(GetById), new { id = createdCustomerId }, customer);
                 }
 

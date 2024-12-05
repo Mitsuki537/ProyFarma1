@@ -1,4 +1,5 @@
-﻿namespace FarmaControlAPI.Repository
+﻿
+namespace FarmaControlAPI.Repository
 {
     public interface ICategoriaProductoRepository<T>
     {

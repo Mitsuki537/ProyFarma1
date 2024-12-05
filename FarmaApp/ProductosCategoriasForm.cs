@@ -21,7 +21,7 @@ namespace FarmaApp
 
         private void btnProductos_Click(object sender, EventArgs e)
         {
-            ProductosForm frm = new ProductosForm();
+            ProductosForm frm = new ProductosForm(_apiClient);
             AbrirFormEnPanel(frm);
         }
 

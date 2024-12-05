@@ -93,6 +93,7 @@ namespace FarmaApp
                 MessageBox.Show("Usuario creado exitosamente.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 ClearInputs();
+
             }
             catch (Exception ex)
             {

@@ -118,7 +118,7 @@ namespace FarmaApp
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            ClientesForm frm = new ClientesForm();
+            ClientesForm frm = new ClientesForm(_apiClient);
             AbrirFormEnPanel(frm);
         }
 

@@ -1,4 +1,6 @@
-﻿namespace FarmaControlAPI.Repository
+﻿using SharedModels.Cliente;
+
+namespace FarmaControlAPI.Repository
 {
     public interface ICLienteRepository<T>
     {
@@ -7,5 +9,6 @@
         Task<int> CreateAsync(T entity);
         Task<bool> UpdateAsync(T entity);
         Task<bool> DeleteAsync(int id);
+
     }
 }
