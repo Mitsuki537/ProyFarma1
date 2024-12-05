@@ -15,7 +15,8 @@ namespace SharedModels.Dtos.DetalleOrdenCompra
         public decimal UnitPrice { get; set; }
         public decimal LineTotal { get; set; }
         public DateTime ModifiedDate { get; set; }
-        public DateTime ReturnDeadline { get; set; }
+        public DateTime? ReturnDeadline { get; set; }
+        public DateTime? ExpirationDate { get; set; }
         public string? OrderNumber { get; set; }
     }
 }

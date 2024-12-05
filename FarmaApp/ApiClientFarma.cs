@@ -35,8 +35,6 @@ namespace FarmaApp
         public IRepository<ProveedorDto> Proveedores {  get; }
         public IRepository<DetalleOrdenVentaDto> DetallesOrdenVenta { get; }
         public IRepository<DetalleOrdenCompraDto> DetallesOrdenCompra { get; }
-        public IRepository<InventorioDto> Inventarios { get; }
-        public IRepository<MovimientoInventarioDto> Movimientos { get; }
         public ApiClientFarma(string jwtToken)
         {
             string apiBaseUrl = ConfigurationManager.AppSettings["ApiBaseUrl"];
@@ -58,9 +56,8 @@ namespace FarmaApp
             CategoriasProducto = new CategoriaRepository<CategoriaProductoDto>(_httpClient, "api/CategoriaProducto");
             Proveedores = new ProveedorRepository<ProveedorDto>(_httpClient, "api/Proveedor");
             DetallesOrdenVenta = new UsuarioRepository<DetalleOrdenVentaDto>(_httpClient, "api/DetalleOrdenVenta");
-            DetallesOrdenCompra = new UsuarioRepository<DetalleOrdenCompraDto>(_httpClient, "api/DetalleOrdenCompra");
-            Inventarios = new UsuarioRepository<InventorioDto>(_httpClient, "api/Inventario");
-            Movimientos = new UsuarioRepository<MovimientoInventarioDto>(_httpClient, "api/Movimiento");
+            DetallesOrdenCompra = new DetalleOrdenCompraRepository<DetalleOrdenCompraDto>(_httpClient, "api/DetalleOrdenCompra");
+           
         }
     }
 }

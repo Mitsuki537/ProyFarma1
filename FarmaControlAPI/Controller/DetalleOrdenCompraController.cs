@@ -39,6 +39,7 @@ namespace FarmaControlAPI.Controller
                     LineTotal = detalle.LineTotal,
                     ModifiedDate = detalle.ModifiedDate,
                     ReturnDeadline = detalle.ReturnDeadline ?? DateTime.MinValue,
+                    ExpirationDate = detalle.ExpirationDate ?? DateTime.MinValue,
                     OrderNumber = detalle.OrderNumber
                 });
 
@@ -77,6 +78,7 @@ namespace FarmaControlAPI.Controller
                     LineTotal = detalle.LineTotal,
                     ModifiedDate = detalle.ModifiedDate,
                     ReturnDeadline = detalle.ReturnDeadline ?? DateTime.MinValue,
+                    ExpirationDate = detalle.ExpirationDate ?? DateTime.MinValue,
                     OrderNumber = detalle.OrderNumber
                 };
 
@@ -109,7 +111,8 @@ namespace FarmaControlAPI.Controller
                     Quantity = detalleDto.Quantity,
                     UnitPrice = detalleDto.UnitPrice,
                     ModifiedDate = DateTime.Now,
-                    ReturnDeadline = detalleDto.ReturnDeadline,
+                    ReturnDeadline = detalleDto.ReturnDeadline ?? null,
+                    ExpirationDate = detalleDto.ExpirationDate ?? null,
                     OrderNumber = detalleDto.OrderNumber
                 };
 
@@ -156,6 +159,7 @@ namespace FarmaControlAPI.Controller
                 existingDetalle.UnitPrice = detalleDto.UnitPrice;
                 existingDetalle.ModifiedDate = DateTime.Now;
                 existingDetalle.ReturnDeadline = detalleDto.ReturnDeadline;
+                existingDetalle.ExpirationDate = detalleDto.ExpirationDate;
                 existingDetalle.OrderNumber = detalleDto.OrderNumber;
 
                 var updated = await _repository.UpdateAsync(existingDetalle);

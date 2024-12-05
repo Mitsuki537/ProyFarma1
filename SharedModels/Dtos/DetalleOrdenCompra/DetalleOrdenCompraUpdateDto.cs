@@ -28,9 +28,11 @@ namespace SharedModels.Dtos.DetalleOrdenCompra
 
         [Required]
         [DataType(DataType.Date)]
-        public DateTime ReturnDeadline { get; set; }
+     
+        public DateTime? ModifiedDate { get; set; }
+        public DateTime? ReturnDeadline { get; set; }
 
-        public DateTime ModifiedDate { get; set; } 
-        public string OrderNumber { get; set; }
+        public DateTime?  ExpirationDate { get; set; }
+        public string? OrderNumber { get; set; }
     }
 }
