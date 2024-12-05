@@ -20,14 +20,14 @@ namespace FarmaControlAPI.Repository
 
             var command = new SqlCommand("INSERT INTO [Purchasing].[PurchaseOrders] " +
                                          "(Id_Supplier, OrderDate, Status, ModifiedDate) " +
-                                         "VALUES (@Id_Supplier, @OrderDate, @Status, @ModifiedDate, @OrderNumber); " +
+                                         "VALUES (@Id_Supplier, @OrderDate, @Status, @ModifiedDate); " +
                                          "SELECT SCOPE_IDENTITY();", connection);
 
             command.Parameters.AddWithValue("@Id_Supplier", entity.IdSupplier);
             command.Parameters.AddWithValue("@OrderDate", entity.OrderDate);
             command.Parameters.AddWithValue("@Status", entity.Status ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@ModifiedDate", DateTime.Now);
-            command.Parameters.AddWithValue("@OrderNumber", entity.OrderNumber);
+          //  command.Parameters.AddWithValue("@OrderNumber", entity.OrderNumber);
             return Convert.ToInt32(await command.ExecuteScalarAsync());
         }
 

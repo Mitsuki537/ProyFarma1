@@ -29,34 +29,30 @@
         private void InitializeComponent()
         {
             panel2 = new Panel();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            btnEliminar = new Button();
+            btnActualizar = new Button();
+            btnGuardar = new Button();
             btnNuevo = new Button();
-            dateTimePicker1 = new DateTimePicker();
-            textBox4 = new TextBox();
+            dtpFechaModificacion = new DateTimePicker();
             label12 = new Label();
-            maskedTextBox1 = new MaskedTextBox();
-            dataGridView1 = new DataGridView();
+            dgvOrdenCompra = new DataGridView();
             label11 = new Label();
             label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
             label3 = new Label();
             label2 = new Label();
-            comboBox1 = new ComboBox();
-            dateTimePicker2 = new DateTimePicker();
-            dateTimePicker3 = new DateTimePicker();
+            dtpFechaOrden = new DateTimePicker();
+            cboEstado = new ComboBox();
+            cboProveedor = new ComboBox();
             panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvOrdenCompra).BeginInit();
             SuspendLayout();
             // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(49, 66, 82);
-            panel2.Controls.Add(button3);
-            panel2.Controls.Add(button2);
-            panel2.Controls.Add(button1);
+            panel2.Controls.Add(btnEliminar);
+            panel2.Controls.Add(btnActualizar);
+            panel2.Controls.Add(btnGuardar);
             panel2.Controls.Add(btnNuevo);
             panel2.Dock = DockStyle.Right;
             panel2.Location = new Point(970, 0);
@@ -64,62 +60,65 @@
             panel2.Size = new Size(130, 505);
             panel2.TabIndex = 25;
             // 
-            // button3
+            // btnEliminar
             // 
-            button3.Cursor = Cursors.Hand;
-            button3.FlatAppearance.BorderSize = 0;
-            button3.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
-            button3.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 45, 53);
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Segoe UI", 12F);
-            button3.ForeColor = SystemColors.Window;
-            button3.ImageAlign = ContentAlignment.MiddleLeft;
-            button3.Location = new Point(0, 210);
-            button3.Margin = new Padding(3, 2, 3, 2);
-            button3.Name = "button3";
-            button3.Size = new Size(130, 46);
-            button3.TabIndex = 41;
-            button3.Text = "Eliminar";
-            button3.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button3.UseVisualStyleBackColor = true;
+            btnEliminar.Cursor = Cursors.Hand;
+            btnEliminar.FlatAppearance.BorderSize = 0;
+            btnEliminar.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
+            btnEliminar.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 45, 53);
+            btnEliminar.FlatStyle = FlatStyle.Flat;
+            btnEliminar.Font = new Font("Segoe UI", 12F);
+            btnEliminar.ForeColor = SystemColors.Window;
+            btnEliminar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEliminar.Location = new Point(0, 210);
+            btnEliminar.Margin = new Padding(3, 2, 3, 2);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(130, 46);
+            btnEliminar.TabIndex = 41;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
-            // button2
+            // btnActualizar
             // 
-            button2.Cursor = Cursors.Hand;
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
-            button2.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 45, 53);
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 12F);
-            button2.ForeColor = SystemColors.Window;
-            button2.ImageAlign = ContentAlignment.MiddleLeft;
-            button2.Location = new Point(0, 142);
-            button2.Margin = new Padding(3, 2, 3, 2);
-            button2.Name = "button2";
-            button2.Size = new Size(130, 46);
-            button2.TabIndex = 42;
-            button2.Text = "Actualizar";
-            button2.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button2.UseVisualStyleBackColor = true;
+            btnActualizar.Cursor = Cursors.Hand;
+            btnActualizar.FlatAppearance.BorderSize = 0;
+            btnActualizar.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
+            btnActualizar.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 45, 53);
+            btnActualizar.FlatStyle = FlatStyle.Flat;
+            btnActualizar.Font = new Font("Segoe UI", 12F);
+            btnActualizar.ForeColor = SystemColors.Window;
+            btnActualizar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnActualizar.Location = new Point(0, 142);
+            btnActualizar.Margin = new Padding(3, 2, 3, 2);
+            btnActualizar.Name = "btnActualizar";
+            btnActualizar.Size = new Size(130, 46);
+            btnActualizar.TabIndex = 42;
+            btnActualizar.Text = "Actualizar";
+            btnActualizar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnActualizar.UseVisualStyleBackColor = true;
+            btnActualizar.Click += btnActualizar_Click;
             // 
-            // button1
+            // btnGuardar
             // 
-            button1.Cursor = Cursors.Hand;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
-            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 45, 53);
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 12F);
-            button1.ForeColor = SystemColors.Window;
-            button1.ImageAlign = ContentAlignment.MiddleLeft;
-            button1.Location = new Point(0, 69);
-            button1.Margin = new Padding(3, 2, 3, 2);
-            button1.Name = "button1";
-            button1.Size = new Size(130, 46);
-            button1.TabIndex = 40;
-            button1.Text = "Guardar";
-            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button1.UseVisualStyleBackColor = true;
+            btnGuardar.Cursor = Cursors.Hand;
+            btnGuardar.FlatAppearance.BorderSize = 0;
+            btnGuardar.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
+            btnGuardar.FlatAppearance.MouseOverBackColor = Color.FromArgb(38, 45, 53);
+            btnGuardar.FlatStyle = FlatStyle.Flat;
+            btnGuardar.Font = new Font("Segoe UI", 12F);
+            btnGuardar.ForeColor = SystemColors.Window;
+            btnGuardar.ImageAlign = ContentAlignment.MiddleLeft;
+            btnGuardar.Location = new Point(0, 69);
+            btnGuardar.Margin = new Padding(3, 2, 3, 2);
+            btnGuardar.Name = "btnGuardar";
+            btnGuardar.Size = new Size(130, 46);
+            btnGuardar.TabIndex = 40;
+            btnGuardar.Text = "Guardar";
+            btnGuardar.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnGuardar.UseVisualStyleBackColor = true;
+            btnGuardar.Click += btnGuardar_Click;
             // 
             // btnNuevo
             // 
@@ -139,54 +138,40 @@
             btnNuevo.Text = "Nuevo";
             btnNuevo.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnNuevo.UseVisualStyleBackColor = true;
+            btnNuevo.Click += btnNuevo_Click;
             // 
-            // dateTimePicker1
+            // dtpFechaModificacion
             // 
-            dateTimePicker1.Font = new Font("Segoe UI", 9.75F);
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(729, 191);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(165, 25);
-            dateTimePicker1.TabIndex = 47;
-            // 
-            // textBox4
-            // 
-            textBox4.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox4.Location = new Point(729, 136);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(165, 22);
-            textBox4.TabIndex = 42;
+            dtpFechaModificacion.Font = new Font("Segoe UI", 9.75F);
+            dtpFechaModificacion.Format = DateTimePickerFormat.Short;
+            dtpFechaModificacion.Location = new Point(703, 175);
+            dtpFechaModificacion.Name = "dtpFechaModificacion";
+            dtpFechaModificacion.Size = new Size(165, 25);
+            dtpFechaModificacion.TabIndex = 47;
             // 
             // label12
             // 
             label12.AutoSize = true;
             label12.Font = new Font("Microsoft Sans Serif", 9.75F);
-            label12.Location = new Point(808, 159);
+            label12.Location = new Point(782, 133);
             label12.Name = "label12";
             label12.Size = new Size(0, 16);
             label12.TabIndex = 41;
             // 
-            // maskedTextBox1
+            // dgvOrdenCompra
             // 
-            maskedTextBox1.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            maskedTextBox1.Location = new Point(729, 75);
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(165, 22);
-            maskedTextBox1.TabIndex = 40;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(64, 279);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(830, 184);
-            dataGridView1.TabIndex = 36;
+            dgvOrdenCompra.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvOrdenCompra.Location = new Point(64, 279);
+            dgvOrdenCompra.Name = "dgvOrdenCompra";
+            dgvOrdenCompra.Size = new Size(830, 184);
+            dgvOrdenCompra.TabIndex = 36;
+            dgvOrdenCompra.SelectionChanged += dgvOrdenCompra_SelectionChanged;
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 12F);
-            label11.Location = new Point(531, 194);
+            label11.Location = new Point(505, 178);
             label11.Name = "label11";
             label11.Size = new Size(164, 21);
             label11.TabIndex = 35;
@@ -196,37 +181,17 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F);
-            label6.Location = new Point(531, 135);
+            label6.Location = new Point(505, 109);
             label6.Name = "label6";
             label6.Size = new Size(56, 21);
             label6.TabIndex = 30;
             label6.Text = "Estado";
             // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F);
-            label5.Location = new Point(531, 74);
-            label5.Name = "label5";
-            label5.Size = new Size(127, 21);
-            label5.TabIndex = 29;
-            label5.Text = "Método de envío";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F);
-            label4.Location = new Point(64, 198);
-            label4.Name = "label4";
-            label4.Size = new Size(113, 21);
-            label4.TabIndex = 28;
-            label4.Text = "Fecha de envío";
-            // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F);
-            label3.Location = new Point(64, 134);
+            label3.Location = new Point(76, 173);
             label3.Name = "label3";
             label3.Size = new Size(116, 21);
             label3.TabIndex = 27;
@@ -236,64 +201,61 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F);
-            label2.Location = new Point(64, 70);
+            label2.Location = new Point(76, 109);
             label2.Name = "label2";
             label2.Size = new Size(82, 21);
             label2.TabIndex = 26;
             label2.Text = "Proveedor";
             // 
-            // comboBox1
+            // dtpFechaOrden
             // 
-            comboBox1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(262, 72);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(165, 25);
-            comboBox1.TabIndex = 50;
+            dtpFechaOrden.Font = new Font("Segoe UI", 9.75F);
+            dtpFechaOrden.Format = DateTimePickerFormat.Short;
+            dtpFechaOrden.Location = new Point(274, 175);
+            dtpFechaOrden.Name = "dtpFechaOrden";
+            dtpFechaOrden.Size = new Size(165, 25);
+            dtpFechaOrden.TabIndex = 51;
             // 
-            // dateTimePicker2
+            // cboEstado
             // 
-            dateTimePicker2.Font = new Font("Segoe UI", 9.75F);
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(262, 136);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(165, 25);
-            dateTimePicker2.TabIndex = 51;
+            cboEstado.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cboEstado.FormattingEnabled = true;
+            cboEstado.Location = new Point(703, 110);
+            cboEstado.Name = "cboEstado";
+            cboEstado.Size = new Size(165, 25);
+            cboEstado.TabIndex = 52;
             // 
-            // dateTimePicker3
+            // cboProveedor
             // 
-            dateTimePicker3.Font = new Font("Segoe UI", 9.75F);
-            dateTimePicker3.Format = DateTimePickerFormat.Short;
-            dateTimePicker3.Location = new Point(262, 194);
-            dateTimePicker3.Name = "dateTimePicker3";
-            dateTimePicker3.Size = new Size(165, 25);
-            dateTimePicker3.TabIndex = 52;
+            cboProveedor.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cboProveedor.FormattingEnabled = true;
+            cboProveedor.Location = new Point(274, 109);
+            cboProveedor.Name = "cboProveedor";
+            cboProveedor.Size = new Size(165, 25);
+            cboProveedor.TabIndex = 53;
             // 
             // OrdenCompraForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1100, 505);
-            Controls.Add(dateTimePicker3);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(comboBox1);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(textBox4);
+            Controls.Add(cboProveedor);
+            Controls.Add(cboEstado);
+            Controls.Add(dtpFechaOrden);
+            Controls.Add(dtpFechaModificacion);
             Controls.Add(label12);
-            Controls.Add(maskedTextBox1);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvOrdenCompra);
             Controls.Add(label11);
             Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(panel2);
             FormBorderStyle = FormBorderStyle.None;
             Name = "OrdenCompraForm";
             Text = "OrderCompraForm";
+            Load += OrdenCompraForm_Load;
             panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvOrdenCompra).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -301,15 +263,15 @@
         #endregion
 
         private Panel panel2;
-        private Button button3;
-        private Button button2;
-        private Button button1;
+        private Button btnEliminar;
+        private Button btnActualizar;
+        private Button btnGuardar;
         private Button btnNuevo;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dtpFechaModificacion;
         private TextBox textBox4;
         private Label label12;
         private MaskedTextBox maskedTextBox1;
-        private DataGridView dataGridView1;
+        private DataGridView dgvOrdenCompra;
         private Label label11;
         private Label label6;
         private Label label5;
@@ -317,7 +279,9 @@
         private Label label3;
         private Label label2;
         private ComboBox comboBox1;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker dtpFechaOrden;
+        private ComboBox cboEstado;
         private DateTimePicker dateTimePicker3;
+        private ComboBox cboProveedor;
     }
 }

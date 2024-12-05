@@ -82,13 +82,14 @@ namespace FarmaControlAPI.Controller
                     OrderDate = orderDto.OrderDate,
                     Status = orderDto.Status,
                     ModifiedDate = DateTime.Now,
-                    OrderNumber = orderDto.OrderNumber
+                //    OrderNumber = orderDto.OrderNumber
                 };
 
                 var createdOrderId = await _repository.CreateAsync(order);
+
                 if (createdOrderId > 0)
                 {
-                    return CreatedAtAction(nameof(GetById), new { id = createdOrderId }, order);
+                    return Ok(createdOrderId); 
                 }
 
                 return BadRequest("No se pudo crear la orden de compra");

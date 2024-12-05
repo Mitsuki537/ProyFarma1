@@ -124,7 +124,7 @@ namespace FarmaApp
 
         private void btnCompras_Click(object sender, EventArgs e)
         {
-            ComprasContenedor frm = new ComprasContenedor();
+            ComprasContenedor frm = new ComprasContenedor(_apiClient);
             AbrirFormEnPanel(frm);
         }
 

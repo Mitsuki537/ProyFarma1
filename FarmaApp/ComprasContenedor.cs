@@ -12,18 +12,21 @@ namespace FarmaApp
 {
     public partial class ComprasContenedor : Form
     {
-        public ComprasContenedor()
+        private readonly ApiClientFarma _apiClient;
+
+        public ComprasContenedor(ApiClientFarma apiClient)
         {
             InitializeComponent();
+            _apiClient = apiClient;
         }
 
         private void btnOrdenCompra_Click(object sender, EventArgs e)
         {
-            DetalleOrdenVentaForm frm = new DetalleOrdenVentaForm();
+            OrdenCompraForm frm = new OrdenCompraForm(_apiClient);
             AbrirFormEnPanel(frm);
         }
 
-        private void AbrirFormEnPanel(DetalleOrdenVentaForm frm)
+        private void AbrirFormEnPanel(OrdenCompraForm frm)
         {
             if (pnlContenedorForm.Controls.Count > 0)
                 pnlContenedorForm.Controls.RemoveAt(0);
