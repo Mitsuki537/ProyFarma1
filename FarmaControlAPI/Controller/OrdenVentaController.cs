@@ -98,17 +98,19 @@ namespace FarmaControlAPI.Controller
             {
                 _logger.LogInformation("Creando una nueva orden de ventas");
 
+                // Crear objeto de la orden de venta
                 var salesOrder = new OrdenVenta
                 {
                     IdCustomer = salesOrderDto.IdCustomer,
                     IdEmployee = salesOrderDto.IdEmployee,
-                    OrderNumber = salesOrderDto.OrderNumber,
                     OrderDate = salesOrderDto.OrderDate,
                     ModifiedDate = DateTime.Now
                 };
 
+                // Crear la orden y obtener el ID generado
                 var createdSalesOrderId = await _repository.CreateAsync(salesOrder);
 
+                // Devolver la respuesta con el ID generado
                 return CreatedAtAction(nameof(GetById), new { id = createdSalesOrderId }, salesOrder);
             }
             catch (Exception ex)

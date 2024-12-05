@@ -50,7 +50,7 @@ namespace FarmaApp
             Usuario = new UsuarioRepository<UsuarioDto>(_httpClient, "api/Usuario");  
             Empleados = new EmpleadoRepository<EmpleadoDto>(_httpClient, "api/Empleado");
             Productos = new ProductoRepository<ProductoDto>(_httpClient, "api/Producto");
-            OrdenesVenta = new UsuarioRepository<OrdenVentaDto>(_httpClient, "api/OrdenVenta");
+            OrdenesVenta = new OrdenVentaRepository<OrdenVentaDto>(_httpClient, "api/OrdenVenta");
             OrdenesCompra = new OrdenCompraRepository<OrdenCompraDto>(_httpClient, "api/OrdenCompra");
             Clientes = new ClienteRepository<ClienteDto>(_httpClient, "api/Cliente");
             CategoriasProducto = new CategoriaRepository<CategoriaProductoDto>(_httpClient, "api/CategoriaProducto");

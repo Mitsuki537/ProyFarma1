@@ -19,16 +19,24 @@ namespace FarmaControlAPI.Repository
             await connection.OpenAsync();
 
             var command = new SqlCommand(
-                "INSERT INTO [Sales].[SalesOrders] (Id_Customer, Id_Employee,  OrderDate, ModifiedDate, OrderNumber) " +
-                "VALUES (@Id_Customer, @Id_Employee , @OrderDate, GETDATE(), @OrderNumber); " +
+                "INSERT INTO [Sales].[SalesOrders] (Id_Customer, Id_Employee, OrderDate) " +
+                "VALUES (@Id_Customer, @Id_Employee, @OrderDate); " +
                 "SELECT SCOPE_IDENTITY();", connection);
 
             command.Parameters.AddWithValue("@Id_Customer", entity.IdCustomer);
             command.Parameters.AddWithValue("@Id_Employee", entity.IdEmployee);
-            command.Parameters.AddWithValue("@OrderNumber", entity.OrderNumber);
             command.Parameters.AddWithValue("@OrderDate", entity.OrderDate);
 
-            return Convert.ToInt32(await command.ExecuteScalarAsync());
+            var result = await command.ExecuteScalarAsync();
+
+            if (result != null)
+            {
+                return Convert.ToInt32(result);
+            }
+            else
+            {
+                throw new Exception("No se pudo obtener el ID de la orden de venta creada.");
+            }
         }
 
         public async Task<bool> DeleteAsync(int id)
@@ -105,8 +113,9 @@ namespace FarmaControlAPI.Repository
             command.Parameters.AddWithValue("@Id_SalesOrder", entity.IdSalesOrder);
             command.Parameters.AddWithValue("@Id_Customer", entity.IdCustomer);
             command.Parameters.AddWithValue("@Id_Employee", entity.IdEmployee);
-            command.Parameters.AddWithValue("@OrderNumber", entity.OrderNumber ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@OrderDate", entity.OrderDate);
+            command.Parameters.AddWithValue("@OrderNumber", entity.OrderNumber ?? (object)DBNull.Value);
+           
 
             return await command.ExecuteNonQueryAsync() > 0;
         }

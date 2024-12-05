@@ -106,7 +106,7 @@ namespace FarmaApp
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            VentasContenedor frm = new VentasContenedor();
+            VentasContenedor frm = new VentasContenedor(_apiClient);
             AbrirFormEnPanel(frm);
         }
 
