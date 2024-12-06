@@ -21,7 +21,7 @@ namespace FarmaApp
 
         private void btnOrdenVenta_Click(object sender, EventArgs e)
         {
-            DetalleOrdenVentaForm frm = new DetalleOrdenVentaForm();
+            DetalleOrdenVentaForm frm = new DetalleOrdenVentaForm(_apiClient);
             AbrirFormEnPanel(frm);
         }
 
