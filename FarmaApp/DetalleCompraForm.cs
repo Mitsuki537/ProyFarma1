@@ -93,7 +93,7 @@ namespace FarmaApp
                 detallesOrdenCompra.Add(detalleDto);
                 dgvDetalleOrdenCompra.DataSource = null;
                 dgvDetalleOrdenCompra.DataSource = detallesOrdenCompra;
-
+                await LoadDetallesOrdenCompraAsync();
                 MessageBox.Show("Detalle de orden de compra guardado con éxito.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearInputs();
             }
@@ -182,8 +182,12 @@ namespace FarmaApp
                 cboProducto.SelectedValue = detalleSeleccionado.IdProduct;
                 txtCantidad.Text = detalleSeleccionado.Quantity.ToString();
                 txtPrecioUnitario.Text = detalleSeleccionado.UnitPrice.ToString("F2");
-                dtpFechaExpiracion.Value = detalleSeleccionado.ExpirationDate.GetValueOrDefault(DateTime.Now);
-                dtpLimiteDevolucion.Value = detalleSeleccionado.ReturnDeadline.GetValueOrDefault(DateTime.Now);
+                dtpFechaExpiracion.Value = detalleSeleccionado.ExpirationDate.HasValue && detalleSeleccionado.ExpirationDate >= dtpFechaExpiracion.MinDate
+            ? detalleSeleccionado.ExpirationDate.Value
+            : DateTime.Now;
+                dtpLimiteDevolucion.Value = detalleSeleccionado.ReturnDeadline.HasValue && detalleSeleccionado.ReturnDeadline >= dtpLimiteDevolucion.MinDate
+             ? detalleSeleccionado.ReturnDeadline.Value
+             : DateTime.Now;
                 cboNumeroOrden.Text = detalleSeleccionado.OrderNumber;
             }
         }
@@ -193,7 +197,7 @@ namespace FarmaApp
             try
             {
                 if (cboIdOrdenCompra.SelectedIndex == -1 || cboProducto.SelectedIndex == -1 ||
-            string.IsNullOrWhiteSpace(txtCantidad.Text) || string.IsNullOrWhiteSpace(txtPrecioUnitario.Text))
+                    string.IsNullOrWhiteSpace(txtCantidad.Text) || string.IsNullOrWhiteSpace(txtPrecioUnitario.Text))
                 {
                     MessageBox.Show("Por favor, complete todos los campos obligatorios.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -216,8 +220,8 @@ namespace FarmaApp
                 detalleSeleccionado.IdProduct = Convert.ToInt32(cboProducto.SelectedValue);
                 detalleSeleccionado.Quantity = int.Parse(txtCantidad.Text);
                 detalleSeleccionado.UnitPrice = decimal.Parse(txtPrecioUnitario.Text);
-                detalleSeleccionado.ExpirationDate = dtpFechaExpiracion.Value;
-                detalleSeleccionado.ReturnDeadline = dtpLimiteDevolucion.Value;
+                detalleSeleccionado.ExpirationDate = dtpFechaExpiracion.Checked ? dtpFechaExpiracion.Value : (DateTime?)null;
+                detalleSeleccionado.ReturnDeadline = dtpLimiteDevolucion.Checked ? dtpLimiteDevolucion.Value : (DateTime?)null;
                 detalleSeleccionado.OrderNumber = cboNumeroOrden.Text;
 
                 await _apiClient.DetallesOrdenCompra.UpdateAsync(detalleSeleccionado.IdPurchaseOrderDetail, detalleSeleccionado);

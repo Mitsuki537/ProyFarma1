@@ -27,8 +27,8 @@ namespace FarmaControlAPI.Repository
             command.Parameters.AddWithValue("@IdProduct", entity.IdProduct);
             command.Parameters.AddWithValue("@Quantity", entity.Quantity);
             command.Parameters.AddWithValue("@UnitPrice", entity.UnitPrice);
-            command.Parameters.AddWithValue("@ReturnDeadline", entity.ReturnDeadline);
-            command.Parameters.AddWithValue("@ExpirationDate", entity.ExpirationDate ?? (object)DBNull.Value);  // ExpirationDate added
+            command.Parameters.AddWithValue("@ReturnDeadline", entity.ReturnDeadline.HasValue ? (object)entity.ReturnDeadline.Value : DBNull.Value);
+            command.Parameters.AddWithValue("@ExpirationDate", entity.ExpirationDate.HasValue ? (object)entity.ExpirationDate.Value : DBNull.Value);
             command.Parameters.AddWithValue("@OrderNumber", entity.OrderNumber);
             return Convert.ToInt32(await command.ExecuteScalarAsync());
         }
@@ -117,8 +117,9 @@ namespace FarmaControlAPI.Repository
             command.Parameters.AddWithValue("@Quantity", entity.Quantity);
             command.Parameters.AddWithValue("@UnitPrice", entity.UnitPrice);
             command.Parameters.AddWithValue("@ReturnDeadline", entity.ReturnDeadline);
-            command.Parameters.AddWithValue("@ExpirationDate", entity.ExpirationDate ?? (object)DBNull.Value);  
+            command.Parameters.AddWithValue("@ExpirationDate", entity.ExpirationDate ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@OrderNumber", entity.OrderNumber ?? (object)DBNull.Value);
+
             return await command.ExecuteNonQueryAsync() > 0;
         }
     }

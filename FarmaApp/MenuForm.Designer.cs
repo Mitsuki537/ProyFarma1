@@ -33,6 +33,7 @@
             btnReportes = new Button();
             btnRegistroUsuarioForm = new Button();
             pnlDashboard = new Panel();
+            btnUsuario = new Button();
             btnCompras = new Button();
             btnMenu = new Button();
             btnProductos = new Button();
@@ -43,19 +44,14 @@
             panel6 = new Panel();
             panel5 = new Panel();
             panel4 = new Panel();
-            btnRptProveedores = new Button();
             panel2 = new Panel();
-            btnRtpClientes = new Button();
             panel1 = new Panel();
             panel3 = new Panel();
-            btnRptVentas = new Button();
-            btnRptEmpleados = new Button();
-            btnRptProductos = new Button();
+            btnRtpMovimientos = new Button();
             btnRptInventario = new Button();
             pnlContenedorForm = new Panel();
             tmExpandirMenu = new System.Windows.Forms.Timer(components);
             tmContraerMenu = new System.Windows.Forms.Timer(components);
-            btnUsuario = new Button();
             pnlDashboard.SuspendLayout();
             pnlSubReportes.SuspendLayout();
             SuspendLayout();
@@ -121,6 +117,27 @@
             pnlDashboard.Name = "pnlDashboard";
             pnlDashboard.Size = new Size(200, 610);
             pnlDashboard.TabIndex = 1;
+            // 
+            // btnUsuario
+            // 
+            btnUsuario.BackColor = Color.FromArgb(26, 32, 40);
+            btnUsuario.Cursor = Cursors.Hand;
+            btnUsuario.FlatAppearance.BorderSize = 0;
+            btnUsuario.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
+            btnUsuario.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
+            btnUsuario.FlatStyle = FlatStyle.Flat;
+            btnUsuario.Font = new Font("Segoe UI", 12F);
+            btnUsuario.ForeColor = Color.Transparent;
+            btnUsuario.ImageAlign = ContentAlignment.MiddleLeft;
+            btnUsuario.Location = new Point(0, 50);
+            btnUsuario.Margin = new Padding(3, 2, 3, 2);
+            btnUsuario.Name = "btnUsuario";
+            btnUsuario.Size = new Size(200, 35);
+            btnUsuario.TabIndex = 14;
+            btnUsuario.Text = "Usuario";
+            btnUsuario.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnUsuario.UseVisualStyleBackColor = false;
+            btnUsuario.Click += btnUsuario_Click_1;
             // 
             // btnCompras
             // 
@@ -247,18 +264,14 @@
             pnlSubReportes.Controls.Add(panel6);
             pnlSubReportes.Controls.Add(panel5);
             pnlSubReportes.Controls.Add(panel4);
-            pnlSubReportes.Controls.Add(btnRptProveedores);
             pnlSubReportes.Controls.Add(panel2);
-            pnlSubReportes.Controls.Add(btnRtpClientes);
             pnlSubReportes.Controls.Add(panel1);
             pnlSubReportes.Controls.Add(panel3);
-            pnlSubReportes.Controls.Add(btnRptVentas);
-            pnlSubReportes.Controls.Add(btnRptEmpleados);
-            pnlSubReportes.Controls.Add(btnRptProductos);
+            pnlSubReportes.Controls.Add(btnRtpMovimientos);
             pnlSubReportes.Controls.Add(btnRptInventario);
             pnlSubReportes.Location = new Point(44, 400);
             pnlSubReportes.Name = "pnlSubReportes";
-            pnlSubReportes.Size = new Size(155, 209);
+            pnlSubReportes.Size = new Size(155, 74);
             pnlSubReportes.TabIndex = 0;
             pnlSubReportes.Visible = false;
             // 
@@ -286,27 +299,6 @@
             panel4.Size = new Size(5, 35);
             panel4.TabIndex = 15;
             // 
-            // btnRptProveedores
-            // 
-            btnRptProveedores.BackColor = Color.FromArgb(26, 32, 40);
-            btnRptProveedores.Cursor = Cursors.Hand;
-            btnRptProveedores.FlatAppearance.BorderSize = 0;
-            btnRptProveedores.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
-            btnRptProveedores.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
-            btnRptProveedores.FlatStyle = FlatStyle.Flat;
-            btnRptProveedores.Font = new Font("Segoe UI", 12F);
-            btnRptProveedores.ForeColor = Color.Transparent;
-            btnRptProveedores.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRptProveedores.Location = new Point(6, 1);
-            btnRptProveedores.Margin = new Padding(3, 2, 3, 2);
-            btnRptProveedores.Name = "btnRptProveedores";
-            btnRptProveedores.Size = new Size(195, 35);
-            btnRptProveedores.TabIndex = 9;
-            btnRptProveedores.Text = "Proveedores";
-            btnRptProveedores.TextAlign = ContentAlignment.MiddleLeft;
-            btnRptProveedores.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnRptProveedores.UseVisualStyleBackColor = false;
-            // 
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(0, 80, 200);
@@ -314,27 +306,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(5, 35);
             panel2.TabIndex = 14;
-            // 
-            // btnRtpClientes
-            // 
-            btnRtpClientes.BackColor = Color.FromArgb(26, 32, 40);
-            btnRtpClientes.Cursor = Cursors.Hand;
-            btnRtpClientes.FlatAppearance.BorderSize = 0;
-            btnRtpClientes.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
-            btnRtpClientes.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
-            btnRtpClientes.FlatStyle = FlatStyle.Flat;
-            btnRtpClientes.Font = new Font("Segoe UI", 12F);
-            btnRtpClientes.ForeColor = Color.Transparent;
-            btnRtpClientes.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRtpClientes.Location = new Point(6, 172);
-            btnRtpClientes.Margin = new Padding(3, 2, 3, 2);
-            btnRtpClientes.Name = "btnRtpClientes";
-            btnRtpClientes.Size = new Size(195, 35);
-            btnRtpClientes.TabIndex = 12;
-            btnRtpClientes.Text = "Clientes";
-            btnRtpClientes.TextAlign = ContentAlignment.MiddleLeft;
-            btnRtpClientes.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnRtpClientes.UseVisualStyleBackColor = false;
             // 
             // panel1
             // 
@@ -352,68 +323,27 @@
             panel3.Size = new Size(5, 35);
             panel3.TabIndex = 15;
             // 
-            // btnRptVentas
+            // btnRtpMovimientos
             // 
-            btnRptVentas.BackColor = Color.FromArgb(26, 32, 40);
-            btnRptVentas.Cursor = Cursors.Hand;
-            btnRptVentas.FlatAppearance.BorderSize = 0;
-            btnRptVentas.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
-            btnRptVentas.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
-            btnRptVentas.FlatStyle = FlatStyle.Flat;
-            btnRptVentas.Font = new Font("Segoe UI", 12F);
-            btnRptVentas.ForeColor = Color.Transparent;
-            btnRptVentas.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRptVentas.Location = new Point(6, 35);
-            btnRptVentas.Margin = new Padding(3, 2, 3, 2);
-            btnRptVentas.Name = "btnRptVentas";
-            btnRptVentas.Size = new Size(195, 35);
-            btnRptVentas.TabIndex = 10;
-            btnRptVentas.Text = "Ventas";
-            btnRptVentas.TextAlign = ContentAlignment.MiddleLeft;
-            btnRptVentas.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnRptVentas.UseVisualStyleBackColor = false;
-            // 
-            // btnRptEmpleados
-            // 
-            btnRptEmpleados.BackColor = Color.FromArgb(26, 32, 40);
-            btnRptEmpleados.Cursor = Cursors.Hand;
-            btnRptEmpleados.FlatAppearance.BorderSize = 0;
-            btnRptEmpleados.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
-            btnRptEmpleados.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
-            btnRptEmpleados.FlatStyle = FlatStyle.Flat;
-            btnRptEmpleados.Font = new Font("Segoe UI", 12F);
-            btnRptEmpleados.ForeColor = Color.Transparent;
-            btnRptEmpleados.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRptEmpleados.Location = new Point(6, 139);
-            btnRptEmpleados.Margin = new Padding(3, 2, 3, 2);
-            btnRptEmpleados.Name = "btnRptEmpleados";
-            btnRptEmpleados.Size = new Size(195, 35);
-            btnRptEmpleados.TabIndex = 11;
-            btnRptEmpleados.Text = "Empleados";
-            btnRptEmpleados.TextAlign = ContentAlignment.MiddleLeft;
-            btnRptEmpleados.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnRptEmpleados.UseVisualStyleBackColor = false;
-            // 
-            // btnRptProductos
-            // 
-            btnRptProductos.BackColor = Color.FromArgb(26, 32, 40);
-            btnRptProductos.Cursor = Cursors.Hand;
-            btnRptProductos.FlatAppearance.BorderSize = 0;
-            btnRptProductos.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
-            btnRptProductos.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
-            btnRptProductos.FlatStyle = FlatStyle.Flat;
-            btnRptProductos.Font = new Font("Segoe UI", 12F);
-            btnRptProductos.ForeColor = Color.Transparent;
-            btnRptProductos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRptProductos.Location = new Point(6, 70);
-            btnRptProductos.Margin = new Padding(3, 2, 3, 2);
-            btnRptProductos.Name = "btnRptProductos";
-            btnRptProductos.Size = new Size(195, 35);
-            btnRptProductos.TabIndex = 12;
-            btnRptProductos.Text = "Productos";
-            btnRptProductos.TextAlign = ContentAlignment.MiddleLeft;
-            btnRptProductos.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnRptProductos.UseVisualStyleBackColor = false;
+            btnRtpMovimientos.BackColor = Color.FromArgb(26, 32, 40);
+            btnRtpMovimientos.Cursor = Cursors.Hand;
+            btnRtpMovimientos.FlatAppearance.BorderSize = 0;
+            btnRtpMovimientos.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
+            btnRtpMovimientos.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
+            btnRtpMovimientos.FlatStyle = FlatStyle.Flat;
+            btnRtpMovimientos.Font = new Font("Segoe UI", 12F);
+            btnRtpMovimientos.ForeColor = Color.Transparent;
+            btnRtpMovimientos.ImageAlign = ContentAlignment.MiddleLeft;
+            btnRtpMovimientos.Location = new Point(6, 36);
+            btnRtpMovimientos.Margin = new Padding(3, 2, 3, 2);
+            btnRtpMovimientos.Name = "btnRtpMovimientos";
+            btnRtpMovimientos.Size = new Size(195, 35);
+            btnRtpMovimientos.TabIndex = 11;
+            btnRtpMovimientos.Text = "Movimientos";
+            btnRtpMovimientos.TextAlign = ContentAlignment.MiddleLeft;
+            btnRtpMovimientos.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnRtpMovimientos.UseVisualStyleBackColor = false;
+            btnRtpMovimientos.Click += btnRtpMovimientos_Click;
             // 
             // btnRptInventario
             // 
@@ -426,7 +356,7 @@
             btnRptInventario.Font = new Font("Segoe UI", 12F);
             btnRptInventario.ForeColor = Color.Transparent;
             btnRptInventario.ImageAlign = ContentAlignment.MiddleLeft;
-            btnRptInventario.Location = new Point(6, 104);
+            btnRptInventario.Location = new Point(6, 0);
             btnRptInventario.Margin = new Padding(3, 2, 3, 2);
             btnRptInventario.Name = "btnRptInventario";
             btnRptInventario.Size = new Size(195, 35);
@@ -435,6 +365,7 @@
             btnRptInventario.TextAlign = ContentAlignment.MiddleLeft;
             btnRptInventario.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnRptInventario.UseVisualStyleBackColor = false;
+            btnRptInventario.Click += btnRptInventario_Click;
             // 
             // pnlContenedorForm
             // 
@@ -452,27 +383,6 @@
             // tmContraerMenu
             // 
             tmContraerMenu.Tick += tmContraerMenu_Tick;
-            // 
-            // btnUsuario
-            // 
-            btnUsuario.BackColor = Color.FromArgb(26, 32, 40);
-            btnUsuario.Cursor = Cursors.Hand;
-            btnUsuario.FlatAppearance.BorderSize = 0;
-            btnUsuario.FlatAppearance.MouseDownBackColor = Color.FromArgb(64, 69, 76);
-            btnUsuario.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 80, 200);
-            btnUsuario.FlatStyle = FlatStyle.Flat;
-            btnUsuario.Font = new Font("Segoe UI", 12F);
-            btnUsuario.ForeColor = Color.Transparent;
-            btnUsuario.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUsuario.Location = new Point(0, 50);
-            btnUsuario.Margin = new Padding(3, 2, 3, 2);
-            btnUsuario.Name = "btnUsuario";
-            btnUsuario.Size = new Size(200, 35);
-            btnUsuario.TabIndex = 14;
-            btnUsuario.Text = "Usuario";
-            btnUsuario.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnUsuario.UseVisualStyleBackColor = false;
-            btnUsuario.Click += btnUsuario_Click_1;
             // 
             // MenuForm
             // 
@@ -500,9 +410,8 @@
         private Button btnRptInventario;
         private Button btnRptVentas;
         private Button btnRptProveedores;
-        private Button btnRptEmpleados;
+        private Button btnRtpMovimientos;
         private Button btnRptProductos;
-        private Button btnRtpClientes;
         private Panel panel5;
         private Panel panel4;
         private Panel panel3;

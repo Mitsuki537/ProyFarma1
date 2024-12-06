@@ -133,6 +133,18 @@ namespace FarmaApp
             UsuarioForm frm = new UsuarioForm(_apiClient);
             AbrirFormEnPanel(frm);
         }
+
+        private void btnRptInventario_Click(object sender, EventArgs e)
+        {
+            ReporteInventarioForm frm = new ReporteInventarioForm();
+            AbrirFormEnPanel(frm);
+        }
+
+        private void btnRtpMovimientos_Click(object sender, EventArgs e)
+        {
+            ReporteMovimientoForm frm = new ReporteMovimientoForm();
+            AbrirFormEnPanel(frm);
+        }
     }
 }
 
